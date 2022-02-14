@@ -61,8 +61,8 @@ module Make (R : Reduction.S) = struct
 
   (* The functions [check'] and [infer'] have an additional argument compared to [check] and [infer]
      which is a list of additional equalities, which are useful when checking subject reduction *)
-    let rec infer' sg (c : SR.lhs_typing_cstr) (d : int) (ctx : typed_context)
-    (te : term) : typ =
+  let rec infer' sg (c : SR.lhs_typing_cstr) (d : int) (ctx : typed_context)
+  (te : term) : typ =
   Debug.(debug d_typeChecking "Inferring: %a" pp_term te);
   match te with
   | Kind                  -> raise (Typing_error KindIsNotTypable)
