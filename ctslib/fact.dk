@@ -1,0 +1,149 @@
+fact :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat))).
+
+fact_body :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat))).
+
+axiom_fact :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => connectives.equal nat.nat (fact x) (nat.filter_nat_type nat.nat fact_body x))).
+
+def eq_fact :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => leibniz.leibniz nat.nat (fact x) (nat.filter_nat_type nat.nat fact_body x)))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.equal_leibniz nat.nat (fact n) (nat.filter_nat_type nat.nat fact_body n) (axiom_fact n).
+
+def sym_eq_fact :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => leibniz.leibniz nat.nat (nat.filter_nat_type nat.nat fact_body x) (fact x)))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  leibniz.sym_leibniz nat.nat (fact n) (nat.filter_nat_type nat.nat fact_body n) (eq_fact n).
+
+axiom_fact_body_O :
+  cts.Term cts.star (connectives.equal nat.nat (fact_body nat.O) (nat.S nat.O)).
+
+def eq_fact_body_O :
+  cts.Term cts.star (leibniz.leibniz nat.nat (fact_body nat.O) (nat.S nat.O))
+  :=
+  connectives.equal_leibniz nat.nat (fact_body nat.O) (nat.S nat.O) axiom_fact_body_O.
+
+def sym_eq_fact_body_O :
+  cts.Term cts.star (leibniz.leibniz nat.nat (nat.S nat.O) (fact_body nat.O))
+  :=
+  leibniz.sym_leibniz nat.nat (fact_body nat.O) (nat.S nat.O) eq_fact_body_O.
+
+axiom_fact_body_S :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => connectives.equal nat.nat (fact_body (nat.S x)) (nat.times (fact x) (nat.S x)))).
+
+def eq_fact_body_S :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => leibniz.leibniz nat.nat (fact_body (nat.S x)) (nat.times (fact x) (nat.S x))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.equal_leibniz
+    nat.nat
+    (fact_body (nat.S n))
+    (nat.times (fact n) (nat.S n))
+    (axiom_fact_body_S n).
+
+def sym_eq_fact_body_S :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => leibniz.leibniz nat.nat (nat.times (fact x) (nat.S x)) (fact_body (nat.S x))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  leibniz.sym_leibniz nat.nat (fact_body (nat.S n)) (nat.times (fact n) (nat.S n)) (eq_fact_body_S n).
+

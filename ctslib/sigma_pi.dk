@@ -1,0 +1,3316 @@
+def exp_pi_l :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             (cts.prod cts.box cts.box cts.box cts.I nat.nat (x1 => nat.nat))
+             (x1 =>
+              logic.eq
+                nat.nat
+                (nat.times
+                   (exp.exp x0 x)
+                   (bigops.bigop
+                      nat.nat
+                      x
+                      (i:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               nat.nat)) =>
+                       bool.true)
+                      (nat.S nat.O)
+                      nat.times
+                      (i:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               nat.nat)) =>
+                       x1 i)))
+                (bigops.bigop
+                   nat.nat
+                   x
+                   (i:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            nat.nat)) =>
+                    bool.true)
+                   (nat.S nat.O)
+                   nat.times
+                   (i:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            nat.nat)) =>
+                    nat.times x0 (x1 i)))))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  a:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  f:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat)))) =>
+  nat.nat_ind
+    (_x_365:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  nat.nat)) =>
+     logic.eq
+       nat.nat
+       (nat.times
+          (exp.exp a _x_365)
+          (bigops.bigop
+             nat.nat
+             _x_365
+             (i:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              bool.true)
+             (nat.S nat.O)
+             nat.times
+             (i:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              f i)))
+       (bigops.bigop
+          nat.nat
+          _x_365
+          (i:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           bool.true)
+          (nat.S nat.O)
+          nat.times
+          (i:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           nat.times a (f i))))
+    (bigops.sym_eq_bigop_O
+       nat.nat
+       (y:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                (cts.prod
+                   cts.box
+                   cts.box
+                   cts.box
+                   cts.I
+                   (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => bool.bool))
+                   (x =>
+                    cts.prod
+                      cts.box
+                      cts.box
+                      cts.box
+                      cts.I
+                      nat.nat
+                      (x0 =>
+                       cts.prod
+                         cts.box
+                         cts.box
+                         cts.box
+                         cts.I
+                         (cts.prod
+                            cts.box
+                            cts.box
+                            cts.box
+                            cts.I
+                            nat.nat
+                            (x1 =>
+                             cts.prod cts.box cts.box cts.box cts.I nat.nat (x2 => nat.nat)))
+                         (x1 =>
+                          cts.prod
+                            cts.box
+                            cts.box
+                            cts.box
+                            cts.I
+                            (cts.prod cts.box cts.box cts.box cts.I nat.nat (x2 => nat.nat))
+                            (x2 => nat.nat))))))) =>
+        logic.eq
+          nat.nat
+          (nat.times
+             (exp.exp a nat.O)
+             (bigops.bigop
+                nat.nat
+                nat.O
+                (i:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         nat.nat)) =>
+                 bool.true)
+                (nat.S nat.O)
+                nat.times
+                (i:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         nat.nat)) =>
+                 f i)))
+          (y
+             (i:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              bool.true)
+             (nat.S nat.O)
+             nat.times
+             (i:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              nat.times a (f i))))
+       (bigops.sym_eq_bigop_body_O
+          nat.nat
+          (y:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   (cts.prod
+                      cts.box
+                      cts.box
+                      cts.box
+                      cts.I
+                      (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => bool.bool))
+                      (x =>
+                       cts.prod
+                         cts.box
+                         cts.box
+                         cts.box
+                         cts.I
+                         nat.nat
+                         (x0 =>
+                          cts.prod
+                            cts.box
+                            cts.box
+                            cts.box
+                            cts.I
+                            (cts.prod
+                               cts.box
+                               cts.box
+                               cts.box
+                               cts.I
+                               nat.nat
+                               (x1 =>
+                                cts.prod
+                                  cts.box
+                                  cts.box
+                                  cts.box
+                                  cts.I
+                                  nat.nat
+                                  (x2 => nat.nat)))
+                            (x1 =>
+                             cts.prod
+                               cts.box
+                               cts.box
+                               cts.box
+                               cts.I
+                               (cts.prod
+                                  cts.box
+                                  cts.box
+                                  cts.box
+                                  cts.I
+                                  nat.nat
+                                  (x2 => nat.nat))
+                               (x2 => nat.nat))))))) =>
+           logic.eq
+             nat.nat
+             (nat.times
+                (exp.exp a nat.O)
+                (bigops.bigop
+                   nat.nat
+                   nat.O
+                   (i:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            nat.nat)) =>
+                    bool.true)
+                   (nat.S nat.O)
+                   nat.times
+                   (i:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            nat.nat)) =>
+                    f i)))
+             (y
+                (i:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         nat.nat)) =>
+                 bool.true)
+                (nat.S nat.O)
+                nat.times
+                (i:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         nat.nat)) =>
+                 nat.times a (f i))))
+          (nat.eq_times_body_O
+             (y:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat)))) =>
+              logic.eq
+                nat.nat
+                (nat.times
+                   (exp.exp a nat.O)
+                   (bigops.bigop
+                      nat.nat
+                      nat.O
+                      (i:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               nat.nat)) =>
+                       bool.true)
+                      (nat.S nat.O)
+                      nat.times
+                      (i:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               nat.nat)) =>
+                       f i)))
+                (nat.S (y (nat.S nat.O))))
+             (nat.eq_filter_nat_type_O
+                (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat))
+                nat.times_body
+                (y:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat)))) =>
+                 logic.eq
+                   nat.nat
+                   (nat.times
+                      (exp.exp a nat.O)
+                      (bigops.bigop
+                         nat.nat
+                         nat.O
+                         (i:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  nat.nat)) =>
+                          f i)))
+                   (nat.S (y (nat.S nat.O))))
+                (nat.eq_times
+                   nat.O
+                   (y:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat)))) =>
+                    logic.eq
+                      nat.nat
+                      (nat.times
+                         (exp.exp a nat.O)
+                         (bigops.bigop
+                            nat.nat
+                            nat.O
+                            (i:(cts.Term
+                                  cts.diamond
+                                  (cts.cast
+                                     cts.triangle
+                                     cts.sinf
+                                     (cts.univ cts.box cts.triangle cts.I)
+                                     (cts.univ cts.diamond cts.sinf cts.I)
+                                     cts.I
+                                     nat.nat)) =>
+                             bool.true)
+                            (nat.S nat.O)
+                            nat.times
+                            (i:(cts.Term
+                                  cts.diamond
+                                  (cts.cast
+                                     cts.triangle
+                                     cts.sinf
+                                     (cts.univ cts.box cts.triangle cts.I)
+                                     (cts.univ cts.diamond cts.sinf cts.I)
+                                     cts.I
+                                     nat.nat)) =>
+                             f i)))
+                      (nat.S (y (nat.S nat.O))))
+                   (nat.eq_plus_body_O
+                      (y:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               (cts.prod
+                                  cts.box
+                                  cts.box
+                                  cts.box
+                                  cts.I
+                                  nat.nat
+                                  (x => nat.nat)))) =>
+                       logic.eq
+                         nat.nat
+                         (nat.times
+                            (exp.exp a nat.O)
+                            (bigops.bigop
+                               nat.nat
+                               nat.O
+                               (i:(cts.Term
+                                     cts.diamond
+                                     (cts.cast
+                                        cts.triangle
+                                        cts.sinf
+                                        (cts.univ cts.box cts.triangle cts.I)
+                                        (cts.univ cts.diamond cts.sinf cts.I)
+                                        cts.I
+                                        nat.nat)) =>
+                                bool.true)
+                               (nat.S nat.O)
+                               nat.times
+                               (i:(cts.Term
+                                     cts.diamond
+                                     (cts.cast
+                                        cts.triangle
+                                        cts.sinf
+                                        (cts.univ cts.box cts.triangle cts.I)
+                                        (cts.univ cts.diamond cts.sinf cts.I)
+                                        cts.I
+                                        nat.nat)) =>
+                                f i)))
+                         (nat.S (y (nat.times nat.O (nat.S nat.O)))))
+                      (nat.eq_filter_nat_type_O
+                         (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat))
+                         nat.plus_body
+                         (y:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  (cts.prod
+                                     cts.box
+                                     cts.box
+                                     cts.box
+                                     cts.I
+                                     nat.nat
+                                     (x => nat.nat)))) =>
+                          logic.eq
+                            nat.nat
+                            (nat.times
+                               (exp.exp a nat.O)
+                               (bigops.bigop
+                                  nat.nat
+                                  nat.O
+                                  (i:(cts.Term
+                                        cts.diamond
+                                        (cts.cast
+                                           cts.triangle
+                                           cts.sinf
+                                           (cts.univ cts.box cts.triangle cts.I)
+                                           (cts.univ cts.diamond cts.sinf cts.I)
+                                           cts.I
+                                           nat.nat)) =>
+                                   bool.true)
+                                  (nat.S nat.O)
+                                  nat.times
+                                  (i:(cts.Term
+                                        cts.diamond
+                                        (cts.cast
+                                           cts.triangle
+                                           cts.sinf
+                                           (cts.univ cts.box cts.triangle cts.I)
+                                           (cts.univ cts.diamond cts.sinf cts.I)
+                                           cts.I
+                                           nat.nat)) =>
+                                   f i)))
+                            (nat.S (y (nat.times nat.O (nat.S nat.O)))))
+                         (nat.eq_plus
+                            nat.O
+                            (y:(cts.Term
+                                  cts.diamond
+                                  (cts.cast
+                                     cts.triangle
+                                     cts.sinf
+                                     (cts.univ cts.box cts.triangle cts.I)
+                                     (cts.univ cts.diamond cts.sinf cts.I)
+                                     cts.I
+                                     (cts.prod
+                                        cts.box
+                                        cts.box
+                                        cts.box
+                                        cts.I
+                                        nat.nat
+                                        (x => nat.nat)))) =>
+                             logic.eq
+                               nat.nat
+                               (nat.times
+                                  (exp.exp a nat.O)
+                                  (bigops.bigop
+                                     nat.nat
+                                     nat.O
+                                     (i:(cts.Term
+                                           cts.diamond
+                                           (cts.cast
+                                              cts.triangle
+                                              cts.sinf
+                                              (cts.univ cts.box cts.triangle cts.I)
+                                              (cts.univ cts.diamond cts.sinf cts.I)
+                                              cts.I
+                                              nat.nat)) =>
+                                      bool.true)
+                                     (nat.S nat.O)
+                                     nat.times
+                                     (i:(cts.Term
+                                           cts.diamond
+                                           (cts.cast
+                                              cts.triangle
+                                              cts.sinf
+                                              (cts.univ cts.box cts.triangle cts.I)
+                                              (cts.univ cts.diamond cts.sinf cts.I)
+                                              cts.I
+                                              nat.nat)) =>
+                                      f i)))
+                               (nat.S (y (nat.times nat.O (nat.S nat.O)))))
+                            (nat.eq_plus_body_S
+                               nat.O
+                               (y:(cts.Term
+                                     cts.diamond
+                                     (cts.cast
+                                        cts.triangle
+                                        cts.sinf
+                                        (cts.univ cts.box cts.triangle cts.I)
+                                        (cts.univ cts.diamond cts.sinf cts.I)
+                                        cts.I
+                                        (cts.prod
+                                           cts.box
+                                           cts.box
+                                           cts.box
+                                           cts.I
+                                           nat.nat
+                                           (x => nat.nat)))) =>
+                                logic.eq
+                                  nat.nat
+                                  (nat.times
+                                     (exp.exp a nat.O)
+                                     (bigops.bigop
+                                        nat.nat
+                                        nat.O
+                                        (i:(cts.Term
+                                              cts.diamond
+                                              (cts.cast
+                                                 cts.triangle
+                                                 cts.sinf
+                                                 (cts.univ
+                                                    cts.box
+                                                    cts.triangle
+                                                    cts.I)
+                                                 (cts.univ
+                                                    cts.diamond
+                                                    cts.sinf
+                                                    cts.I)
+                                                 cts.I
+                                                 nat.nat)) =>
+                                         bool.true)
+                                        (nat.S nat.O)
+                                        nat.times
+                                        (i:(cts.Term
+                                              cts.diamond
+                                              (cts.cast
+                                                 cts.triangle
+                                                 cts.sinf
+                                                 (cts.univ
+                                                    cts.box
+                                                    cts.triangle
+                                                    cts.I)
+                                                 (cts.univ
+                                                    cts.diamond
+                                                    cts.sinf
+                                                    cts.I)
+                                                 cts.I
+                                                 nat.nat)) =>
+                                         f i)))
+                                  (y (nat.times nat.O (nat.S nat.O))))
+                               (nat.eq_filter_nat_type_S
+                                  (cts.prod
+                                     cts.box
+                                     cts.box
+                                     cts.box
+                                     cts.I
+                                     nat.nat
+                                     (x => nat.nat))
+                                  nat.plus_body
+                                  nat.O
+                                  (y:(cts.Term
+                                        cts.diamond
+                                        (cts.cast
+                                           cts.triangle
+                                           cts.sinf
+                                           (cts.univ cts.box cts.triangle cts.I)
+                                           (cts.univ cts.diamond cts.sinf cts.I)
+                                           cts.I
+                                           (cts.prod
+                                              cts.box
+                                              cts.box
+                                              cts.box
+                                              cts.I
+                                              nat.nat
+                                              (x => nat.nat)))) =>
+                                   logic.eq
+                                     nat.nat
+                                     (nat.times
+                                        (exp.exp a nat.O)
+                                        (bigops.bigop
+                                           nat.nat
+                                           nat.O
+                                           (i:(cts.Term
+                                                 cts.diamond
+                                                 (cts.cast
+                                                    cts.triangle
+                                                    cts.sinf
+                                                    (cts.univ
+                                                       cts.box
+                                                       cts.triangle
+                                                       cts.I)
+                                                    (cts.univ
+                                                       cts.diamond
+                                                       cts.sinf
+                                                       cts.I)
+                                                    cts.I
+                                                    nat.nat)) =>
+                                            bool.true)
+                                           (nat.S nat.O)
+                                           nat.times
+                                           (i:(cts.Term
+                                                 cts.diamond
+                                                 (cts.cast
+                                                    cts.triangle
+                                                    cts.sinf
+                                                    (cts.univ
+                                                       cts.box
+                                                       cts.triangle
+                                                       cts.I)
+                                                    (cts.univ
+                                                       cts.diamond
+                                                       cts.sinf
+                                                       cts.I)
+                                                    cts.I
+                                                    nat.nat)) =>
+                                            f i)))
+                                     (y (nat.times nat.O (nat.S nat.O))))
+                                  (nat.eq_plus
+                                     (nat.S nat.O)
+                                     (y:(cts.Term
+                                           cts.diamond
+                                           (cts.cast
+                                              cts.triangle
+                                              cts.sinf
+                                              (cts.univ cts.box cts.triangle cts.I)
+                                              (cts.univ cts.diamond cts.sinf cts.I)
+                                              cts.I
+                                              (cts.prod
+                                                 cts.box
+                                                 cts.box
+                                                 cts.box
+                                                 cts.I
+                                                 nat.nat
+                                                 (x => nat.nat)))) =>
+                                      logic.eq
+                                        nat.nat
+                                        (nat.times
+                                           (exp.exp a nat.O)
+                                           (bigops.bigop
+                                              nat.nat
+                                              nat.O
+                                              (i:(cts.Term
+                                                    cts.diamond
+                                                    (cts.cast
+                                                       cts.triangle
+                                                       cts.sinf
+                                                       (cts.univ
+                                                          cts.box
+                                                          cts.triangle
+                                                          cts.I)
+                                                       (cts.univ
+                                                          cts.diamond
+                                                          cts.sinf
+                                                          cts.I)
+                                                       cts.I
+                                                       nat.nat)) =>
+                                               bool.true)
+                                              (nat.S nat.O)
+                                              nat.times
+                                              (i:(cts.Term
+                                                    cts.diamond
+                                                    (cts.cast
+                                                       cts.triangle
+                                                       cts.sinf
+                                                       (cts.univ
+                                                          cts.box
+                                                          cts.triangle
+                                                          cts.I)
+                                                       (cts.univ
+                                                          cts.diamond
+                                                          cts.sinf
+                                                          cts.I)
+                                                       cts.I
+                                                       nat.nat)) =>
+                                               f i)))
+                                        (y (nat.times nat.O (nat.S nat.O))))
+                                     (nat.eq_times_body_S
+                                        nat.O
+                                        (y:(cts.Term
+                                              cts.diamond
+                                              (cts.cast
+                                                 cts.triangle
+                                                 cts.sinf
+                                                 (cts.univ
+                                                    cts.box
+                                                    cts.triangle
+                                                    cts.I)
+                                                 (cts.univ
+                                                    cts.diamond
+                                                    cts.sinf
+                                                    cts.I)
+                                                 cts.I
+                                                 (cts.prod
+                                                    cts.box
+                                                    cts.box
+                                                    cts.box
+                                                    cts.I
+                                                    nat.nat
+                                                    (x => nat.nat)))) =>
+                                         logic.eq
+                                           nat.nat
+                                           (nat.times
+                                              (exp.exp a nat.O)
+                                              (bigops.bigop
+                                                 nat.nat
+                                                 nat.O
+                                                 (i:(cts.Term
+                                                       cts.diamond
+                                                       (cts.cast
+                                                          cts.triangle
+                                                          cts.sinf
+                                                          (cts.univ
+                                                             cts.box
+                                                             cts.triangle
+                                                             cts.I)
+                                                          (cts.univ
+                                                             cts.diamond
+                                                             cts.sinf
+                                                             cts.I)
+                                                          cts.I
+                                                          nat.nat)) =>
+                                                  bool.true)
+                                                 (nat.S nat.O)
+                                                 nat.times
+                                                 (i:(cts.Term
+                                                       cts.diamond
+                                                       (cts.cast
+                                                          cts.triangle
+                                                          cts.sinf
+                                                          (cts.univ
+                                                             cts.box
+                                                             cts.triangle
+                                                             cts.I)
+                                                          (cts.univ
+                                                             cts.diamond
+                                                             cts.sinf
+                                                             cts.I)
+                                                          cts.I
+                                                          nat.nat)) =>
+                                                  f i)))
+                                           (y (nat.S nat.O)))
+                                        (nat.eq_filter_nat_type_S
+                                           (cts.prod
+                                              cts.box
+                                              cts.box
+                                              cts.box
+                                              cts.I
+                                              nat.nat
+                                              (x => nat.nat))
+                                           nat.times_body
+                                           nat.O
+                                           (y:(cts.Term
+                                                 cts.diamond
+                                                 (cts.cast
+                                                    cts.triangle
+                                                    cts.sinf
+                                                    (cts.univ
+                                                       cts.box
+                                                       cts.triangle
+                                                       cts.I)
+                                                    (cts.univ
+                                                       cts.diamond
+                                                       cts.sinf
+                                                       cts.I)
+                                                    cts.I
+                                                    (cts.prod
+                                                       cts.box
+                                                       cts.box
+                                                       cts.box
+                                                       cts.I
+                                                       nat.nat
+                                                       (x => nat.nat)))) =>
+                                            logic.eq
+                                              nat.nat
+                                              (nat.times
+                                                 (exp.exp a nat.O)
+                                                 (bigops.bigop
+                                                    nat.nat
+                                                    nat.O
+                                                    (i:(cts.Term
+                                                          cts.diamond
+                                                          (cts.cast
+                                                             cts.triangle
+                                                             cts.sinf
+                                                             (cts.univ
+                                                                cts.box
+                                                                cts.triangle
+                                                                cts.I)
+                                                             (cts.univ
+                                                                cts.diamond
+                                                                cts.sinf
+                                                                cts.I)
+                                                             cts.I
+                                                             nat.nat)) =>
+                                                     bool.true)
+                                                    (nat.S nat.O)
+                                                    nat.times
+                                                    (i:(cts.Term
+                                                          cts.diamond
+                                                          (cts.cast
+                                                             cts.triangle
+                                                             cts.sinf
+                                                             (cts.univ
+                                                                cts.box
+                                                                cts.triangle
+                                                                cts.I)
+                                                             (cts.univ
+                                                                cts.diamond
+                                                                cts.sinf
+                                                                cts.I)
+                                                             cts.I
+                                                             nat.nat)) =>
+                                                     f i)))
+                                              (y (nat.S nat.O)))
+                                           (nat.eq_times
+                                              (nat.S nat.O)
+                                              (y:(cts.Term
+                                                    cts.diamond
+                                                    (cts.cast
+                                                       cts.triangle
+                                                       cts.sinf
+                                                       (cts.univ
+                                                          cts.box
+                                                          cts.triangle
+                                                          cts.I)
+                                                       (cts.univ
+                                                          cts.diamond
+                                                          cts.sinf
+                                                          cts.I)
+                                                       cts.I
+                                                       (cts.prod
+                                                          cts.box
+                                                          cts.box
+                                                          cts.box
+                                                          cts.I
+                                                          nat.nat
+                                                          (x => nat.nat)))) =>
+                                               logic.eq
+                                                 nat.nat
+                                                 (nat.times
+                                                    (exp.exp a nat.O)
+                                                    (bigops.bigop
+                                                       nat.nat
+                                                       nat.O
+                                                       (i:(cts.Term
+                                                             cts.diamond
+                                                             (cts.cast
+                                                                cts.triangle
+                                                                cts.sinf
+                                                                (cts.univ
+                                                                   cts.box
+                                                                   cts.triangle
+                                                                   cts.I)
+                                                                (cts.univ
+                                                                   cts.diamond
+                                                                   cts.sinf
+                                                                   cts.I)
+                                                                cts.I
+                                                                nat.nat)) =>
+                                                        bool.true)
+                                                       (nat.S nat.O)
+                                                       nat.times
+                                                       (i:(cts.Term
+                                                             cts.diamond
+                                                             (cts.cast
+                                                                cts.triangle
+                                                                cts.sinf
+                                                                (cts.univ
+                                                                   cts.box
+                                                                   cts.triangle
+                                                                   cts.I)
+                                                                (cts.univ
+                                                                   cts.diamond
+                                                                   cts.sinf
+                                                                   cts.I)
+                                                                cts.I
+                                                                nat.nat)) =>
+                                                        f i)))
+                                                 (y (nat.S nat.O)))
+                                              (nat.eq_match_nat_type_O
+                                                 nat.nat
+                                                 (nat.S nat.O)
+                                                 (k:(cts.Term
+                                                       cts.diamond
+                                                       (cts.cast
+                                                          cts.triangle
+                                                          cts.sinf
+                                                          (cts.univ
+                                                             cts.box
+                                                             cts.triangle
+                                                             cts.I)
+                                                          (cts.univ
+                                                             cts.diamond
+                                                             cts.sinf
+                                                             cts.I)
+                                                          cts.I
+                                                          nat.nat)) =>
+                                                  bool.match_bool_type
+                                                    nat.nat
+                                                    (nat.times
+                                                       (nat.times a (f k))
+                                                       (bigops.bigop
+                                                          nat.nat
+                                                          k
+                                                          (i:(cts.Term
+                                                                cts.diamond
+                                                                (cts.cast
+                                                                   cts.triangle
+                                                                   cts.sinf
+                                                                   (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                   (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                   cts.I
+                                                                   nat.nat)) =>
+                                                           bool.true)
+                                                          (nat.S nat.O)
+                                                          nat.times
+                                                          (i:(cts.Term
+                                                                cts.diamond
+                                                                (cts.cast
+                                                                   cts.triangle
+                                                                   cts.sinf
+                                                                   (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                   (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                   cts.I
+                                                                   nat.nat)) =>
+                                                           nat.times a (f i))))
+                                                    (bigops.bigop
+                                                       nat.nat
+                                                       k
+                                                       (i:(cts.Term
+                                                             cts.diamond
+                                                             (cts.cast
+                                                                cts.triangle
+                                                                cts.sinf
+                                                                (cts.univ
+                                                                   cts.box
+                                                                   cts.triangle
+                                                                   cts.I)
+                                                                (cts.univ
+                                                                   cts.diamond
+                                                                   cts.sinf
+                                                                   cts.I)
+                                                                cts.I
+                                                                nat.nat)) =>
+                                                        bool.true)
+                                                       (nat.S nat.O)
+                                                       nat.times
+                                                       (i:(cts.Term
+                                                             cts.diamond
+                                                             (cts.cast
+                                                                cts.triangle
+                                                                cts.sinf
+                                                                (cts.univ
+                                                                   cts.box
+                                                                   cts.triangle
+                                                                   cts.I)
+                                                                (cts.univ
+                                                                   cts.diamond
+                                                                   cts.sinf
+                                                                   cts.I)
+                                                                cts.I
+                                                                nat.nat)) =>
+                                                        nat.times a (f i)))
+                                                    bool.true)
+                                                 (y:(cts.Term
+                                                       cts.diamond
+                                                       (cts.cast
+                                                          cts.triangle
+                                                          cts.sinf
+                                                          (cts.univ
+                                                             cts.box
+                                                             cts.triangle
+                                                             cts.I)
+                                                          (cts.univ
+                                                             cts.diamond
+                                                             cts.sinf
+                                                             cts.I)
+                                                          cts.I
+                                                          nat.nat)) =>
+                                                  logic.eq
+                                                    nat.nat
+                                                    (nat.times
+                                                       (exp.exp a nat.O)
+                                                       (bigops.bigop
+                                                          nat.nat
+                                                          nat.O
+                                                          (i:(cts.Term
+                                                                cts.diamond
+                                                                (cts.cast
+                                                                   cts.triangle
+                                                                   cts.sinf
+                                                                   (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                   (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                   cts.I
+                                                                   nat.nat)) =>
+                                                           bool.true)
+                                                          (nat.S nat.O)
+                                                          nat.times
+                                                          (i:(cts.Term
+                                                                cts.diamond
+                                                                (cts.cast
+                                                                   cts.triangle
+                                                                   cts.sinf
+                                                                   (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                   (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                   cts.I
+                                                                   nat.nat)) =>
+                                                           f i)))
+                                                    (nat.times (nat.S nat.O) y))
+                                                 (exp.eq_exp_body_O
+                                                    a
+                                                    (y:(cts.Term
+                                                          cts.diamond
+                                                          (cts.cast
+                                                             cts.triangle
+                                                             cts.sinf
+                                                             (cts.univ
+                                                                cts.box
+                                                                cts.triangle
+                                                                cts.I)
+                                                             (cts.univ
+                                                                cts.diamond
+                                                                cts.sinf
+                                                                cts.I)
+                                                             cts.I
+                                                             nat.nat)) =>
+                                                     logic.eq
+                                                       nat.nat
+                                                       (nat.times
+                                                          (exp.exp a nat.O)
+                                                          (bigops.bigop
+                                                             nat.nat
+                                                             nat.O
+                                                             (i:(cts.Term
+                                                                   cts.diamond
+                                                                   (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                              bool.true)
+                                                             (nat.S nat.O)
+                                                             nat.times
+                                                             (i:(cts.Term
+                                                                   cts.diamond
+                                                                   (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                              f i)))
+                                                       (nat.times
+                                                          y
+                                                          (nat.match_nat_type
+                                                             nat.nat
+                                                             (nat.S nat.O)
+                                                             (k:(cts.Term
+                                                                   cts.diamond
+                                                                   (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                              bool.match_bool_type
+                                                                nat.nat
+                                                                (nat.times
+                                                                   (nat.times
+                                                                    a
+                                                                    (f k))
+                                                                   (bigops.bigop
+                                                                    nat.nat
+                                                                    k
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f i))))
+                                                                (bigops.bigop
+                                                                   nat.nat
+                                                                   k
+                                                                   (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                   (nat.S nat.O)
+                                                                   nat.times
+                                                                   (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f i)))
+                                                                bool.true)
+                                                             nat.O)))
+                                                    (nat.eq_filter_nat_type_O
+                                                       nat.nat
+                                                       (exp.exp_body a)
+                                                       (y:(cts.Term
+                                                             cts.diamond
+                                                             (cts.cast
+                                                                cts.triangle
+                                                                cts.sinf
+                                                                (cts.univ
+                                                                   cts.box
+                                                                   cts.triangle
+                                                                   cts.I)
+                                                                (cts.univ
+                                                                   cts.diamond
+                                                                   cts.sinf
+                                                                   cts.I)
+                                                                cts.I
+                                                                nat.nat)) =>
+                                                        logic.eq
+                                                          nat.nat
+                                                          (nat.times
+                                                             (exp.exp a nat.O)
+                                                             (bigops.bigop
+                                                                nat.nat
+                                                                nat.O
+                                                                (i:(cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                 bool.true)
+                                                                (nat.S nat.O)
+                                                                nat.times
+                                                                (i:(cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                 f i)))
+                                                          (nat.times
+                                                             y
+                                                             (nat.match_nat_type
+                                                                nat.nat
+                                                                (nat.S nat.O)
+                                                                (k:(cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                 bool.match_bool_type
+                                                                   nat.nat
+                                                                   (nat.times
+                                                                    (nat.times
+                                                                    a
+                                                                    (f k))
+                                                                    (bigops.bigop
+                                                                    nat.nat
+                                                                    k
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f
+                                                                    i))))
+                                                                   (bigops.bigop
+                                                                    nat.nat
+                                                                    k
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f i)))
+                                                                   bool.true)
+                                                                nat.O)))
+                                                       (exp.eq_exp
+                                                          a
+                                                          nat.O
+                                                          (y:(cts.Term
+                                                                cts.diamond
+                                                                (cts.cast
+                                                                   cts.triangle
+                                                                   cts.sinf
+                                                                   (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                   (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                   cts.I
+                                                                   nat.nat)) =>
+                                                           logic.eq
+                                                             nat.nat
+                                                             (nat.times
+                                                                (exp.exp a nat.O)
+                                                                (bigops.bigop
+                                                                   nat.nat
+                                                                   nat.O
+                                                                   (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                   (nat.S nat.O)
+                                                                   nat.times
+                                                                   (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    f i)))
+                                                             (nat.times
+                                                                y
+                                                                (nat.match_nat_type
+                                                                   nat.nat
+                                                                   (nat.S nat.O)
+                                                                   (k:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.match_bool_type
+                                                                    nat.nat
+                                                                    (nat.times
+                                                                    (nat.times
+                                                                    a
+                                                                    (f
+                                                                    k))
+                                                                    (bigops.bigop
+                                                                    nat.nat
+                                                                    k
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f
+                                                                    i))))
+                                                                    (bigops.bigop
+                                                                    nat.nat
+                                                                    k
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f
+                                                                    i)))
+                                                                    bool.true)
+                                                                   nat.O)))
+                                                          (nat.sym_eq_match_nat_type_O
+                                                             nat.nat
+                                                             (nat.S nat.O)
+                                                             (k:(cts.Term
+                                                                   cts.diamond
+                                                                   (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                              bool.match_bool_type
+                                                                nat.nat
+                                                                (nat.times
+                                                                   (nat.times
+                                                                    a
+                                                                    (f k))
+                                                                   (bigops.bigop
+                                                                    nat.nat
+                                                                    k
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f i))))
+                                                                (bigops.bigop
+                                                                   nat.nat
+                                                                   k
+                                                                   (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                   (nat.S nat.O)
+                                                                   nat.times
+                                                                   (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    nat.times
+                                                                    a
+                                                                    (f i)))
+                                                                bool.true)
+                                                             (y:(cts.Term
+                                                                   cts.diamond
+                                                                   (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                              logic.eq
+                                                                nat.nat
+                                                                (nat.times
+                                                                   (exp.exp
+                                                                    a
+                                                                    nat.O)
+                                                                   (bigops.bigop
+                                                                    nat.nat
+                                                                    nat.O
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    f i)))
+                                                                (nat.times
+                                                                   (exp.exp
+                                                                    a
+                                                                    nat.O)
+                                                                   y))
+                                                             (bigops.eq_bigop_body_O
+                                                                nat.nat
+                                                                (y:(cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x =>
+                                                                    bool.bool))
+                                                                    (x =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x0 =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x1 =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x2 =>
+                                                                    nat.nat)))
+                                                                    (x1 =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x2 =>
+                                                                    nat.nat))
+                                                                    (x2 =>
+                                                                    nat.nat))))))) =>
+                                                                 logic.eq
+                                                                   nat.nat
+                                                                   (nat.times
+                                                                    (exp.exp
+                                                                    a
+                                                                    nat.O)
+                                                                    (bigops.bigop
+                                                                    nat.nat
+                                                                    nat.O
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    f i)))
+                                                                   (nat.times
+                                                                    (exp.exp
+                                                                    a
+                                                                    nat.O)
+                                                                    (y
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    f i))))
+                                                                (bigops.eq_bigop_O
+                                                                   nat.nat
+                                                                   (y:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x =>
+                                                                    bool.bool))
+                                                                    (x =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x0 =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x1 =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x2 =>
+                                                                    nat.nat)))
+                                                                    (x1 =>
+                                                                    cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    (cts.prod
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.box
+                                                                    cts.I
+                                                                    nat.nat
+                                                                    (x2 =>
+                                                                    nat.nat))
+                                                                    (x2 =>
+                                                                    nat.nat))))))) =>
+                                                                    logic.eq
+                                                                    nat.nat
+                                                                    (nat.times
+                                                                    (exp.exp
+                                                                    a
+                                                                    nat.O)
+                                                                    (bigops.bigop
+                                                                    nat.nat
+                                                                    nat.O
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    f
+                                                                    i)))
+                                                                    (nat.times
+                                                                    (exp.exp
+                                                                    a
+                                                                    nat.O)
+                                                                    (y
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    f
+                                                                    i))))
+                                                                   (logic.refl
+                                                                    nat.nat
+                                                                    (nat.times
+                                                                    (exp.exp
+                                                                    a
+                                                                    nat.O)
+                                                                    (bigops.bigop
+                                                                    nat.nat
+                                                                    nat.O
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    bool.true)
+                                                                    (nat.S
+                                                                    nat.O)
+                                                                    nat.times
+                                                                    (i:(
+                                                                    cts.Term
+                                                                    cts.diamond
+                                                                    (cts.cast
+                                                                    cts.triangle
+                                                                    cts.sinf
+                                                                    (cts.univ
+                                                                    cts.box
+                                                                    cts.triangle
+                                                                    cts.I)
+                                                                    (cts.univ
+                                                                    cts.diamond
+                                                                    cts.sinf
+                                                                    cts.I)
+                                                                    cts.I
+                                                                    nat.nat)) =>
+                                                                    f
+                                                                    i)))))))))))))))))))))))))
+    (i:(cts.Term
+          cts.diamond
+          (cts.cast
+             cts.triangle
+             cts.sinf
+             (cts.univ cts.box cts.triangle cts.I)
+             (cts.univ cts.diamond cts.sinf cts.I)
+             cts.I
+             nat.nat)) =>
+     Hind:(cts.Term
+             cts.star
+             (logic.eq
+                nat.nat
+                (nat.times
+                   (exp.exp a i)
+                   (bigops.bigop
+                      nat.nat
+                      i
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       bool.true)
+                      (nat.S nat.O)
+                      nat.times
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       f i0)))
+                (bigops.bigop
+                   nat.nat
+                   i
+                   (i0:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    bool.true)
+                   (nat.S nat.O)
+                   nat.times
+                   (i0:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    nat.times a (f i0))))) =>
+     logic.eq_ind_r
+       nat.nat
+       (nat.times
+          (f i)
+          (bigops.bigop
+             nat.nat
+             i
+             (i0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              bool.true)
+             (nat.S nat.O)
+             nat.times
+             (i0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              f i0)))
+       (x:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                nat.nat)) =>
+        logic.eq
+          nat.nat
+          (nat.times (exp.exp a (nat.S i)) x)
+          (bigops.bigop
+             nat.nat
+             (nat.S i)
+             (i0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              bool.true)
+             (nat.S nat.O)
+             nat.times
+             (i0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              nat.times a (f i0))))
+       (logic.eq_ind_r
+          nat.nat
+          (nat.times
+             (nat.times a (f i))
+             (bigops.bigop
+                nat.nat
+                i
+                (i0:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          nat.nat)) =>
+                 bool.true)
+                (nat.S nat.O)
+                nat.times
+                (i0:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          nat.nat)) =>
+                 nat.times a (f i0))))
+          (x:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           logic.eq
+             nat.nat
+             (nat.times
+                (exp.exp a (nat.S i))
+                (nat.times
+                   (f i)
+                   (bigops.bigop
+                      nat.nat
+                      i
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       bool.true)
+                      (nat.S nat.O)
+                      nat.times
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       f i0))))
+             x)
+          (logic.eq_ind
+             nat.nat
+             (nat.times
+                (exp.exp a i)
+                (bigops.bigop
+                   nat.nat
+                   i
+                   (i0:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    bool.true)
+                   (nat.S nat.O)
+                   nat.times
+                   (i0:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    f i0)))
+             (x_1:(cts.Term
+                     cts.diamond
+                     (cts.cast
+                        cts.triangle
+                        cts.sinf
+                        (cts.univ cts.box cts.triangle cts.I)
+                        (cts.univ cts.diamond cts.sinf cts.I)
+                        cts.I
+                        nat.nat)) =>
+              logic.eq
+                nat.nat
+                (nat.times
+                   (exp.exp a (nat.S i))
+                   (nat.times
+                      (f i)
+                      (bigops.bigop
+                         nat.nat
+                         i
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          f i0))))
+                (nat.times (nat.times a (f i)) x_1))
+             (logic.eq_ind
+                nat.nat
+                (nat.times
+                   (nat.times (exp.exp a (nat.S i)) (f i))
+                   (bigops.bigop
+                      nat.nat
+                      i
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       bool.true)
+                      (nat.S nat.O)
+                      nat.times
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       f i0)))
+                (x_1:(cts.Term
+                        cts.diamond
+                        (cts.cast
+                           cts.triangle
+                           cts.sinf
+                           (cts.univ cts.box cts.triangle cts.I)
+                           (cts.univ cts.diamond cts.sinf cts.I)
+                           cts.I
+                           nat.nat)) =>
+                 logic.eq
+                   nat.nat
+                   x_1
+                   (nat.times
+                      (nat.times a (f i))
+                      (nat.times
+                         (exp.exp a i)
+                         (bigops.bigop
+                            nat.nat
+                            i
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             bool.true)
+                            (nat.S nat.O)
+                            nat.times
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             f i0)))))
+                (logic.eq_ind
+                   nat.nat
+                   (nat.times
+                      (nat.times (nat.times a (f i)) (exp.exp a i))
+                      (bigops.bigop
+                         nat.nat
+                         i
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          f i0)))
+                   (x_1:(cts.Term
+                           cts.diamond
+                           (cts.cast
+                              cts.triangle
+                              cts.sinf
+                              (cts.univ cts.box cts.triangle cts.I)
+                              (cts.univ cts.diamond cts.sinf cts.I)
+                              cts.I
+                              nat.nat)) =>
+                    logic.eq
+                      nat.nat
+                      (nat.times
+                         (nat.times (exp.exp a (nat.S i)) (f i))
+                         (bigops.bigop
+                            nat.nat
+                            i
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             bool.true)
+                            (nat.S nat.O)
+                            nat.times
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             f i0)))
+                      x_1)
+                   (logic.eq_f2
+                      nat.nat
+                      nat.nat
+                      nat.nat
+                      nat.times
+                      (nat.times (exp.exp a (nat.S i)) (f i))
+                      (nat.times (nat.times a (f i)) (exp.exp a i))
+                      (bigops.bigop
+                         nat.nat
+                         i
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          f i0))
+                      (bigops.bigop
+                         nat.nat
+                         i
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          f i0))
+                      (exp.sym_eq_exp
+                         a
+                         (nat.S i)
+                         (y:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  nat.nat)) =>
+                          logic.eq
+                            nat.nat
+                            (nat.times y (f i))
+                            (nat.times (nat.times a (f i)) (exp.exp a i)))
+                         (nat.sym_eq_filter_nat_type_S
+                            nat.nat
+                            (exp.exp_body a)
+                            i
+                            (y:(cts.Term
+                                  cts.diamond
+                                  (cts.cast
+                                     cts.triangle
+                                     cts.sinf
+                                     (cts.univ cts.box cts.triangle cts.I)
+                                     (cts.univ cts.diamond cts.sinf cts.I)
+                                     cts.I
+                                     nat.nat)) =>
+                             logic.eq
+                               nat.nat
+                               (nat.times y (f i))
+                               (nat.times (nat.times a (f i)) (exp.exp a i)))
+                            (exp.sym_eq_exp_body_S
+                               a
+                               i
+                               (y:(cts.Term
+                                     cts.diamond
+                                     (cts.cast
+                                        cts.triangle
+                                        cts.sinf
+                                        (cts.univ cts.box cts.triangle cts.I)
+                                        (cts.univ cts.diamond cts.sinf cts.I)
+                                        cts.I
+                                        nat.nat)) =>
+                                logic.eq
+                                  nat.nat
+                                  (nat.times y (f i))
+                                  (nat.times (nat.times a (f i)) (exp.exp a i)))
+                               (logic.rewrite_r
+                                  nat.nat
+                                  (nat.times a (exp.exp a i))
+                                  (__:(cts.Term
+                                         cts.diamond
+                                         (cts.cast
+                                            cts.triangle
+                                            cts.sinf
+                                            (cts.univ cts.box cts.triangle cts.I)
+                                            (cts.univ cts.diamond cts.sinf cts.I)
+                                            cts.I
+                                            nat.nat)) =>
+                                   logic.eq
+                                     nat.nat
+                                     (nat.times __ (f i))
+                                     (nat.times (nat.times a (f i)) (exp.exp a i)))
+                                  (logic.rewrite_r
+                                     nat.nat
+                                     (nat.times (f i) (nat.times a (exp.exp a i)))
+                                     (__:(cts.Term
+                                            cts.diamond
+                                            (cts.cast
+                                               cts.triangle
+                                               cts.sinf
+                                               (cts.univ cts.box cts.triangle cts.I)
+                                               (cts.univ cts.diamond cts.sinf cts.I)
+                                               cts.I
+                                               nat.nat)) =>
+                                      logic.eq
+                                        nat.nat
+                                        __
+                                        (nat.times (nat.times a (f i)) (exp.exp a i)))
+                                     (logic.rewrite_r
+                                        nat.nat
+                                        (nat.times a (nat.times (f i) (exp.exp a i)))
+                                        (__:(cts.Term
+                                               cts.diamond
+                                               (cts.cast
+                                                  cts.triangle
+                                                  cts.sinf
+                                                  (cts.univ
+                                                     cts.box
+                                                     cts.triangle
+                                                     cts.I)
+                                                  (cts.univ
+                                                     cts.diamond
+                                                     cts.sinf
+                                                     cts.I)
+                                                  cts.I
+                                                  nat.nat)) =>
+                                         logic.eq
+                                           nat.nat
+                                           __
+                                           (nat.times (nat.times a (f i)) (exp.exp a i)))
+                                        (logic.rewrite_r
+                                           nat.nat
+                                           (nat.times (exp.exp a i) (nat.times a (f i)))
+                                           (__:(cts.Term
+                                                  cts.diamond
+                                                  (cts.cast
+                                                     cts.triangle
+                                                     cts.sinf
+                                                     (cts.univ
+                                                        cts.box
+                                                        cts.triangle
+                                                        cts.I)
+                                                     (cts.univ
+                                                        cts.diamond
+                                                        cts.sinf
+                                                        cts.I)
+                                                     cts.I
+                                                     nat.nat)) =>
+                                            logic.eq
+                                              nat.nat
+                                              (nat.times
+                                                 a
+                                                 (nat.times (f i) (exp.exp a i)))
+                                              __)
+                                           (logic.rewrite_r
+                                              nat.nat
+                                              (nat.times
+                                                 a
+                                                 (nat.times (exp.exp a i) (f i)))
+                                              (__:(cts.Term
+                                                     cts.diamond
+                                                     (cts.cast
+                                                        cts.triangle
+                                                        cts.sinf
+                                                        (cts.univ
+                                                           cts.box
+                                                           cts.triangle
+                                                           cts.I)
+                                                        (cts.univ
+                                                           cts.diamond
+                                                           cts.sinf
+                                                           cts.I)
+                                                        cts.I
+                                                        nat.nat)) =>
+                                               logic.eq
+                                                 nat.nat
+                                                 (nat.times
+                                                    a
+                                                    (nat.times (f i) (exp.exp a i)))
+                                                 __)
+                                              (logic.rewrite_r
+                                                 nat.nat
+                                                 (nat.times (f i) (exp.exp a i))
+                                                 (__:(cts.Term
+                                                        cts.diamond
+                                                        (cts.cast
+                                                           cts.triangle
+                                                           cts.sinf
+                                                           (cts.univ
+                                                              cts.box
+                                                              cts.triangle
+                                                              cts.I)
+                                                           (cts.univ
+                                                              cts.diamond
+                                                              cts.sinf
+                                                              cts.I)
+                                                           cts.I
+                                                           nat.nat)) =>
+                                                  logic.eq
+                                                    nat.nat
+                                                    (nat.times
+                                                       a
+                                                       (nat.times
+                                                          (f i)
+                                                          (exp.exp a i)))
+                                                    (nat.times a __))
+                                                 (logic.refl
+                                                    nat.nat
+                                                    (nat.times
+                                                       a
+                                                       (nat.times
+                                                          (f i)
+                                                          (exp.exp a i))))
+                                                 (nat.times (exp.exp a i) (f i))
+                                                 (nat.commutative_times
+                                                    (exp.exp a i)
+                                                    (f i)))
+                                              (nat.times
+                                                 (exp.exp a i)
+                                                 (nat.times a (f i)))
+                                              (nat.times_times (exp.exp a i) a (f i)))
+                                           (nat.times (nat.times a (f i)) (exp.exp a i))
+                                           (nat.commutative_times
+                                              (nat.times a (f i))
+                                              (exp.exp a i)))
+                                        (nat.times (f i) (nat.times a (exp.exp a i)))
+                                        (nat.times_times (f i) a (exp.exp a i)))
+                                     (nat.times (nat.times a (exp.exp a i)) (f i))
+                                     (nat.commutative_times
+                                        (nat.times a (exp.exp a i))
+                                        (f i)))
+                                  (nat.times (exp.exp a i) a)
+                                  (nat.commutative_times (exp.exp a i) a)))))
+                      (logic.refl
+                         nat.nat
+                         (bigops.bigop
+                            nat.nat
+                            i
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             bool.true)
+                            (nat.S nat.O)
+                            nat.times
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             f i0))))
+                   (nat.times
+                      (nat.times a (f i))
+                      (nat.times
+                         (exp.exp a i)
+                         (bigops.bigop
+                            nat.nat
+                            i
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             bool.true)
+                            (nat.S nat.O)
+                            nat.times
+                            (i0:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             f i0))))
+                   (nat.associative_times
+                      (nat.times a (f i))
+                      (exp.exp a i)
+                      (bigops.bigop
+                         nat.nat
+                         i
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          f i0))))
+                (nat.times
+                   (exp.exp a (nat.S i))
+                   (nat.times
+                      (f i)
+                      (bigops.bigop
+                         nat.nat
+                         i
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i0:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          f i0))))
+                (nat.associative_times
+                   (exp.exp a (nat.S i))
+                   (f i)
+                   (bigops.bigop
+                      nat.nat
+                      i
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       bool.true)
+                      (nat.S nat.O)
+                      nat.times
+                      (i0:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       f i0))))
+             (bigops.bigop
+                nat.nat
+                i
+                (i0:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          nat.nat)) =>
+                 bool.true)
+                (nat.S nat.O)
+                nat.times
+                (i0:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          nat.nat)) =>
+                 nat.times a (f i0)))
+             Hind)
+          (bigops.bigop
+             nat.nat
+             (nat.S i)
+             (i0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              bool.true)
+             (nat.S nat.O)
+             nat.times
+             (i0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              nat.times a (f i0)))
+          (bigops.bigop_Strue
+             nat.nat
+             i
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              bool.true)
+             (nat.S nat.O)
+             nat.times
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              nat.times a (f __))
+             (logic.refl bool.bool bool.true)))
+       (bigops.bigop
+          nat.nat
+          (nat.S i)
+          (i0:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    nat.nat)) =>
+           bool.true)
+          (nat.S nat.O)
+          nat.times
+          (i0:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    nat.nat)) =>
+           f i0))
+       (bigops.bigop_Strue
+          nat.nat
+          i
+          (__:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    nat.nat)) =>
+           bool.true)
+          (nat.S nat.O)
+          nat.times
+          f
+          (logic.refl bool.bool bool.true)))
+    n.
+
+def exp_pi_bc :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             nat.nat
+             (x1 =>
+              cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.prod cts.box cts.box cts.box cts.I nat.nat (x2 => nat.nat))
+                (x2 =>
+                 logic.eq
+                   nat.nat
+                   (nat.times
+                      (exp.exp x (nat.minus x1 x0))
+                      (bigops.bigop
+                         nat.nat
+                         (nat.minus x1 x0)
+                         (i:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  nat.nat)) =>
+                          bool.true)
+                         (nat.S nat.O)
+                         nat.times
+                         (i:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  nat.nat)) =>
+                          x2 (nat.plus i x0))))
+                   (bigops.bigop
+                      nat.nat
+                      (nat.minus x1 x0)
+                      (i:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               nat.nat)) =>
+                       bool.true)
+                      (nat.S nat.O)
+                      nat.times
+                      (i:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               nat.nat)) =>
+                       nat.times x (x2 (nat.plus i x0)))))))))
+  :=
+  a:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  b:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  c:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  f:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat)))) =>
+  exp_pi_l
+    (nat.minus c b)
+    a
+    (__:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              nat.nat)) =>
+     f (nat.plus __ b)).
+

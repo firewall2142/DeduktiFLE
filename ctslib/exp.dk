@@ -1,0 +1,746 @@
+exp :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          nat.nat
+          (x => cts.prod cts.box cts.box cts.box cts.I nat.nat (x0 => nat.nat)))).
+
+exp_body :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          nat.nat
+          (x => cts.prod cts.box cts.box cts.box cts.I nat.nat (x0 => nat.nat)))).
+
+axiom_exp :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 => connectives.equal nat.nat (exp x x0) (nat.filter_nat_type nat.nat (exp_body x) x0)))).
+
+def eq_exp :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 => leibniz.leibniz nat.nat (exp x x0) (nat.filter_nat_type nat.nat (exp_body x) x0))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.equal_leibniz
+    nat.nat
+    (exp n m)
+    (nat.filter_nat_type nat.nat (exp_body n) m)
+    (axiom_exp n m).
+
+def sym_eq_exp :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 => leibniz.leibniz nat.nat (nat.filter_nat_type nat.nat (exp_body x) x0) (exp x x0))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  leibniz.sym_leibniz nat.nat (exp n m) (nat.filter_nat_type nat.nat (exp_body n) m) (eq_exp n m).
+
+axiom_exp_body_O :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => connectives.equal nat.nat (exp_body x nat.O) (nat.S nat.O))).
+
+def eq_exp_body_O :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => leibniz.leibniz nat.nat (exp_body x nat.O) (nat.S nat.O)))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.equal_leibniz nat.nat (exp_body n nat.O) (nat.S nat.O) (axiom_exp_body_O n).
+
+def sym_eq_exp_body_O :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => leibniz.leibniz nat.nat (nat.S nat.O) (exp_body x nat.O)))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  leibniz.sym_leibniz nat.nat (exp_body n nat.O) (nat.S nat.O) (eq_exp_body_O n).
+
+axiom_exp_body_S :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 => connectives.equal nat.nat (exp_body x (nat.S x0)) (nat.times (exp x x0) x)))).
+
+def eq_exp_body_S :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 => leibniz.leibniz nat.nat (exp_body x (nat.S x0)) (nat.times (exp x x0) x))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.equal_leibniz
+    nat.nat
+    (exp_body n (nat.S m))
+    (nat.times (exp n m) n)
+    (axiom_exp_body_S n m).
+
+def sym_eq_exp_body_S :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 => leibniz.leibniz nat.nat (nat.times (exp x x0) x) (exp_body x (nat.S x0)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  leibniz.sym_leibniz nat.nat (exp_body n (nat.S m)) (nat.times (exp n m) n) (eq_exp_body_S n m).
+
+def lt_O_exp :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x)
+             (x1 => nat.lt nat.O (exp x x0)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  nat.nat_ind
+    (_x_365:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  nat.nat)) =>
+     cts.prod cts.star cts.star cts.star cts.I (nat.lt nat.O n) (x => nat.lt nat.O (exp n _x_365)))
+    (sym_eq_exp
+       n
+       nat.O
+       (y:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                nat.nat)) =>
+        cts.prod cts.star cts.star cts.star cts.I (nat.lt nat.O n) (x => nat.lt nat.O y))
+       (nat.sym_eq_filter_nat_type_O
+          nat.nat
+          (exp_body n)
+          (y:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           cts.prod cts.star cts.star cts.star cts.I (nat.lt nat.O n) (x => nat.lt nat.O y))
+          (sym_eq_exp_body_O
+             n
+             (y:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              cts.prod cts.star cts.star cts.star cts.I (nat.lt nat.O n) (x => nat.lt nat.O y))
+             (auto:(cts.Term cts.star (nat.le (nat.S nat.O) n)) => nat.lt_O_S nat.O))))
+    (a:(cts.Term
+          cts.diamond
+          (cts.cast
+             cts.triangle
+             cts.sinf
+             (cts.univ cts.box cts.triangle cts.I)
+             (cts.univ cts.diamond cts.sinf cts.I)
+             cts.I
+             nat.nat)) =>
+     sym_eq_exp
+       n
+       (nat.S a)
+       (y:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                nat.nat)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (cts.prod cts.star cts.star cts.star cts.I (nat.lt nat.O n) (x => nat.lt nat.O (exp n a)))
+          (x => cts.prod cts.star cts.star cts.star cts.I (nat.lt nat.O n) (x0 => nat.lt nat.O y)))
+       (nat.sym_eq_filter_nat_type_S
+          nat.nat
+          (exp_body n)
+          a
+          (y:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (nat.lt nat.O n)
+                (x => nat.lt nat.O (exp n a)))
+             (x =>
+              cts.prod cts.star cts.star cts.star cts.I (nat.lt nat.O n) (x0 => nat.lt nat.O y)))
+          (sym_eq_exp_body_S
+             n
+             a
+             (y:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   (nat.lt nat.O n)
+                   (x => nat.lt nat.O (exp n a)))
+                (x =>
+                 cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   (nat.lt nat.O n)
+                   (x0 => nat.lt nat.O y)))
+             (Hind:(cts.Term
+                      cts.star
+                      (cts.prod
+                         cts.star
+                         cts.star
+                         cts.star
+                         cts.I
+                         (nat.le (nat.S nat.O) n)
+                         (x => nat.le (nat.S nat.O) (exp n a)))) =>
+              posn:(cts.Term cts.star (nat.le (nat.S nat.O) n)) =>
+              nat.eq_times_body_O
+                (y:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat)))) =>
+                 nat.le (nat.S (y (nat.S nat.O))) (nat.times (exp n a) n))
+                (nat.eq_filter_nat_type_O
+                   (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat))
+                   nat.times_body
+                   (y:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat)))) =>
+                    nat.le (nat.S (y (nat.S nat.O))) (nat.times (exp n a) n))
+                   (nat.eq_times
+                      nat.O
+                      (y:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               (cts.prod
+                                  cts.box
+                                  cts.box
+                                  cts.box
+                                  cts.I
+                                  nat.nat
+                                  (x => nat.nat)))) =>
+                       nat.le (nat.S (y (nat.S nat.O))) (nat.times (exp n a) n))
+                      (nat.eq_plus_body_O
+                         (y:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  (cts.prod
+                                     cts.box
+                                     cts.box
+                                     cts.box
+                                     cts.I
+                                     nat.nat
+                                     (x => nat.nat)))) =>
+                          nat.le
+                            (nat.S (y (nat.times nat.O (nat.S nat.O))))
+                            (nat.times (exp n a) n))
+                         (nat.eq_filter_nat_type_O
+                            (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => nat.nat))
+                            nat.plus_body
+                            (y:(cts.Term
+                                  cts.diamond
+                                  (cts.cast
+                                     cts.triangle
+                                     cts.sinf
+                                     (cts.univ cts.box cts.triangle cts.I)
+                                     (cts.univ cts.diamond cts.sinf cts.I)
+                                     cts.I
+                                     (cts.prod
+                                        cts.box
+                                        cts.box
+                                        cts.box
+                                        cts.I
+                                        nat.nat
+                                        (x => nat.nat)))) =>
+                             nat.le
+                               (nat.S (y (nat.times nat.O (nat.S nat.O))))
+                               (nat.times (exp n a) n))
+                            (nat.eq_plus
+                               nat.O
+                               (y:(cts.Term
+                                     cts.diamond
+                                     (cts.cast
+                                        cts.triangle
+                                        cts.sinf
+                                        (cts.univ cts.box cts.triangle cts.I)
+                                        (cts.univ cts.diamond cts.sinf cts.I)
+                                        cts.I
+                                        (cts.prod
+                                           cts.box
+                                           cts.box
+                                           cts.box
+                                           cts.I
+                                           nat.nat
+                                           (x => nat.nat)))) =>
+                                nat.le
+                                  (nat.S (y (nat.times nat.O (nat.S nat.O))))
+                                  (nat.times (exp n a) n))
+                               (nat.eq_plus_body_S
+                                  nat.O
+                                  (y:(cts.Term
+                                        cts.diamond
+                                        (cts.cast
+                                           cts.triangle
+                                           cts.sinf
+                                           (cts.univ cts.box cts.triangle cts.I)
+                                           (cts.univ cts.diamond cts.sinf cts.I)
+                                           cts.I
+                                           (cts.prod
+                                              cts.box
+                                              cts.box
+                                              cts.box
+                                              cts.I
+                                              nat.nat
+                                              (x => nat.nat)))) =>
+                                   nat.le
+                                     (y (nat.times nat.O (nat.S nat.O)))
+                                     (nat.times (exp n a) n))
+                                  (nat.eq_filter_nat_type_S
+                                     (cts.prod
+                                        cts.box
+                                        cts.box
+                                        cts.box
+                                        cts.I
+                                        nat.nat
+                                        (x => nat.nat))
+                                     nat.plus_body
+                                     nat.O
+                                     (y:(cts.Term
+                                           cts.diamond
+                                           (cts.cast
+                                              cts.triangle
+                                              cts.sinf
+                                              (cts.univ cts.box cts.triangle cts.I)
+                                              (cts.univ cts.diamond cts.sinf cts.I)
+                                              cts.I
+                                              (cts.prod
+                                                 cts.box
+                                                 cts.box
+                                                 cts.box
+                                                 cts.I
+                                                 nat.nat
+                                                 (x => nat.nat)))) =>
+                                      nat.le
+                                        (y (nat.times nat.O (nat.S nat.O)))
+                                        (nat.times (exp n a) n))
+                                     (nat.eq_plus
+                                        (nat.S nat.O)
+                                        (y:(cts.Term
+                                              cts.diamond
+                                              (cts.cast
+                                                 cts.triangle
+                                                 cts.sinf
+                                                 (cts.univ
+                                                    cts.box
+                                                    cts.triangle
+                                                    cts.I)
+                                                 (cts.univ
+                                                    cts.diamond
+                                                    cts.sinf
+                                                    cts.I)
+                                                 cts.I
+                                                 (cts.prod
+                                                    cts.box
+                                                    cts.box
+                                                    cts.box
+                                                    cts.I
+                                                    nat.nat
+                                                    (x => nat.nat)))) =>
+                                         nat.le
+                                           (y (nat.times nat.O (nat.S nat.O)))
+                                           (nat.times (exp n a) n))
+                                        (nat.eq_times_body_S
+                                           nat.O
+                                           (y:(cts.Term
+                                                 cts.diamond
+                                                 (cts.cast
+                                                    cts.triangle
+                                                    cts.sinf
+                                                    (cts.univ
+                                                       cts.box
+                                                       cts.triangle
+                                                       cts.I)
+                                                    (cts.univ
+                                                       cts.diamond
+                                                       cts.sinf
+                                                       cts.I)
+                                                    cts.I
+                                                    (cts.prod
+                                                       cts.box
+                                                       cts.box
+                                                       cts.box
+                                                       cts.I
+                                                       nat.nat
+                                                       (x => nat.nat)))) =>
+                                            nat.le
+                                              (y (nat.S nat.O))
+                                              (nat.times (exp n a) n))
+                                           (nat.eq_filter_nat_type_S
+                                              (cts.prod
+                                                 cts.box
+                                                 cts.box
+                                                 cts.box
+                                                 cts.I
+                                                 nat.nat
+                                                 (x => nat.nat))
+                                              nat.times_body
+                                              nat.O
+                                              (y:(cts.Term
+                                                    cts.diamond
+                                                    (cts.cast
+                                                       cts.triangle
+                                                       cts.sinf
+                                                       (cts.univ
+                                                          cts.box
+                                                          cts.triangle
+                                                          cts.I)
+                                                       (cts.univ
+                                                          cts.diamond
+                                                          cts.sinf
+                                                          cts.I)
+                                                       cts.I
+                                                       (cts.prod
+                                                          cts.box
+                                                          cts.box
+                                                          cts.box
+                                                          cts.I
+                                                          nat.nat
+                                                          (x => nat.nat)))) =>
+                                               nat.le
+                                                 (y (nat.S nat.O))
+                                                 (nat.times (exp n a) n))
+                                              (nat.eq_times
+                                                 (nat.S nat.O)
+                                                 (y:(cts.Term
+                                                       cts.diamond
+                                                       (cts.cast
+                                                          cts.triangle
+                                                          cts.sinf
+                                                          (cts.univ
+                                                             cts.box
+                                                             cts.triangle
+                                                             cts.I)
+                                                          (cts.univ
+                                                             cts.diamond
+                                                             cts.sinf
+                                                             cts.I)
+                                                          cts.I
+                                                          (cts.prod
+                                                             cts.box
+                                                             cts.box
+                                                             cts.box
+                                                             cts.I
+                                                             nat.nat
+                                                             (x => nat.nat)))) =>
+                                                  nat.le
+                                                    (y (nat.S nat.O))
+                                                    (nat.times (exp n a) n))
+                                                 (nat.le_times
+                                                    (nat.S nat.O)
+                                                    (exp n a)
+                                                    (nat.S nat.O)
+                                                    n
+                                                    (Hind posn)
+                                                    posn))))))))))))))))
+    m.
+

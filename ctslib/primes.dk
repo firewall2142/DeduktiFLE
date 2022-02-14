@@ -1,0 +1,2317 @@
+divides :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          nat.nat
+          (x =>
+           cts.prod cts.box cts.box cts.box cts.I nat.nat (x0 => cts.univ cts.star cts.box cts.I)))).
+
+quotient :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             nat.nat
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (logic.eq nat.nat x0 (nat.times x x1))
+                (x2 => divides x x0))))).
+
+match_divides_prop :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (cts.prod
+                   cts.box
+                   cts.star
+                   cts.star
+                   cts.I
+                   nat.nat
+                   (x2 =>
+                    cts.prod
+                      cts.star
+                      cts.star
+                      cts.star
+                      cts.I
+                      (logic.eq nat.nat x0 (nat.times x x2))
+                      (x3 => x1)))
+                (x2 => cts.prod cts.star cts.star cts.star cts.I (divides x x0) (x3 => x1)))))).
+
+def reflexive_divides :
+  cts.Term cts.star (relations.reflexive nat.nat divides)
+  :=
+  x:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  quotient
+    x
+    x
+    (nat.S nat.O)
+    (logic.rewrite_r
+       nat.nat
+       (nat.times x (nat.S nat.O))
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 nat.nat)) =>
+        logic.eq nat.nat __ (nat.times x (nat.S nat.O)))
+       (logic.refl nat.nat (nat.times x (nat.S nat.O)))
+       x
+       (nat.times_n_1 x)).
+
+def divides_to_div_mod_spec :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (divides x x0)
+                (x2 => div_mod.div_mod_spec x0 x (div_mod.div x0 x) nat.O)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posn:(cts.Term cts.star (nat.lt nat.O n)) =>
+  _clearme:(cts.Term cts.star (divides n m)) =>
+  match_divides_prop
+    n
+    m
+    (div_mod.div_mod_spec m n (div_mod.div m n) nat.O)
+    (q:(cts.Term
+          cts.diamond
+          (cts.cast
+             cts.triangle
+             cts.sinf
+             (cts.univ cts.box cts.triangle cts.I)
+             (cts.univ cts.diamond cts.sinf cts.I)
+             cts.I
+             nat.nat)) =>
+     eqm:(cts.Term cts.star (logic.eq nat.nat m (nat.times n q))) =>
+     div_mod.div_mod_spec_intro
+       m
+       n
+       (div_mod.div m n)
+       nat.O
+       posn
+       (logic.eq_ind_r
+          nat.nat
+          (nat.times n q)
+          (x:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           logic.eq nat.nat x (nat.plus (nat.times (div_mod.div x n) n) nat.O))
+          (logic.eq_ind_r
+             nat.nat
+             (nat.times q n)
+             (x:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              logic.eq nat.nat x (nat.plus (nat.times (div_mod.div x n) n) nat.O))
+             (logic.eq_ind_r
+                nat.nat
+                q
+                (x:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         nat.nat)) =>
+                 logic.eq nat.nat (nat.times q n) (nat.plus (nat.times x n) nat.O))
+                (logic.rewrite_r
+                   nat.nat
+                   (nat.times n q)
+                   (__:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    logic.eq nat.nat __ (nat.plus (nat.times q n) nat.O))
+                   (logic.rewrite_l
+                      nat.nat
+                      m
+                      (__:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       logic.eq nat.nat __ (nat.plus (nat.times q n) nat.O))
+                      (logic.rewrite_r
+                         nat.nat
+                         (nat.times n q)
+                         (__:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          logic.eq nat.nat m (nat.plus __ nat.O))
+                         (logic.rewrite_l
+                            nat.nat
+                            m
+                            (__:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             logic.eq nat.nat m (nat.plus __ nat.O))
+                            (logic.rewrite_l
+                               nat.nat
+                               m
+                               (__:(cts.Term
+                                      cts.diamond
+                                      (cts.cast
+                                         cts.triangle
+                                         cts.sinf
+                                         (cts.univ cts.box cts.triangle cts.I)
+                                         (cts.univ cts.diamond cts.sinf cts.I)
+                                         cts.I
+                                         nat.nat)) =>
+                                logic.eq nat.nat m __)
+                               (logic.refl nat.nat m)
+                               (nat.plus m nat.O)
+                               (nat.plus_n_O m))
+                            (nat.times n q)
+                            eqm)
+                         (nat.times q n)
+                         (nat.commutative_times q n))
+                      (nat.times n q)
+                      eqm)
+                   (nat.times q n)
+                   (nat.commutative_times q n))
+                (div_mod.div (nat.times q n) n)
+                (div_mod.div_times q n posn))
+             (nat.times n q)
+             (nat.commutative_times n q))
+          m
+          eqm))
+    _clearme.
+
+def divides_to_mod_O :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (divides x x0)
+                (x2 => logic.eq nat.nat (div_mod.mod x0 x) nat.O)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posn:(cts.Term cts.star (nat.lt nat.O n)) =>
+  divnm:(cts.Term cts.star (divides n m)) =>
+  div_mod.div_mod_spec_to_eq2
+    m
+    n
+    (div_mod.div m n)
+    (div_mod.mod m n)
+    (div_mod.div m n)
+    nat.O
+    (div_mod.div_mod_spec_div_mod m n posn)
+    (divides_to_div_mod_spec n m posn divnm).
+
+def mod_O_to_divides :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (logic.eq nat.nat (div_mod.mod x0 x) nat.O)
+                (x2 => divides x x0)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  auto:(cts.Term cts.star (nat.lt nat.O n)) =>
+  auto':(cts.Term cts.star (logic.eq nat.nat (div_mod.mod m n) nat.O)) =>
+  quotient
+    n
+    m
+    (div_mod.div m n)
+    (logic.rewrite_l
+       nat.nat
+       (nat.times n (div_mod.div m n))
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 nat.nat)) =>
+        logic.eq nat.nat __ (nat.times n (div_mod.div m n)))
+       (logic.refl nat.nat (nat.times n (div_mod.div m n)))
+       m
+       (logic.rewrite_r
+          nat.nat
+          (nat.minus m nat.O)
+          (__:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    nat.nat)) =>
+           logic.eq nat.nat (nat.times n (div_mod.div m n)) __)
+          (logic.rewrite_l
+             nat.nat
+             (div_mod.mod m n)
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              logic.eq nat.nat (nat.times n (div_mod.div m n)) (nat.minus m __))
+             (logic.rewrite_l
+                nat.nat
+                (nat.times (div_mod.div m n) n)
+                (__:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          nat.nat)) =>
+                 logic.eq nat.nat __ (nat.minus m (div_mod.mod m n)))
+                (div_mod.eq_times_div_minus_mod m n)
+                (nat.times n (div_mod.div m n))
+                (nat.commutative_times (div_mod.div m n) n))
+             nat.O
+             auto')
+          m
+          (nat.minus_n_O m))).
+
+def divides_n_O :
+  cts.Term cts.star (cts.prod cts.box cts.star cts.star cts.I nat.nat (x => divides x nat.O))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  quotient
+    n
+    nat.O
+    nat.O
+    (logic.rewrite_r
+       nat.nat
+       (nat.times n nat.O)
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 nat.nat)) =>
+        logic.eq nat.nat __ (nat.times n nat.O))
+       (logic.refl nat.nat (nat.times n nat.O))
+       nat.O
+       (nat.times_n_O n)).
+
+def divides_n_n :
+  cts.Term cts.star (cts.prod cts.box cts.star cts.star cts.I nat.nat (x => divides x x))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  reflexive_divides n.
+
+def eq_mod_to_divides :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             nat.nat
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (nat.lt nat.O x1)
+                (x2 =>
+                 cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   (logic.eq nat.nat (div_mod.mod x x1) (div_mod.mod x0 x1))
+                   (x3 => divides x1 (nat.minus x x0)))))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  q:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posq:(cts.Term cts.star (nat.lt nat.O q)) =>
+  eqmod:(cts.Term cts.star (logic.eq nat.nat (div_mod.mod n q) (div_mod.mod m q))) =>
+  nat.leb_elim
+    n
+    m
+    (__:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              bool.bool)) =>
+     divides q (nat.minus n m))
+    (nm:(cts.Term cts.star (nat.le n m)) =>
+     logic.eq_coerc
+       (divides q nat.O)
+       (divides q (nat.minus n m))
+       (divides_n_O q)
+       (logic.rewrite_r
+          nat.nat
+          nat.O
+          (__:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    nat.nat)) =>
+           logic.eq (cts.univ cts.star cts.box cts.I) (divides q nat.O) (divides q __))
+          (logic.refl (cts.univ cts.star cts.box cts.I) (divides q nat.O))
+          (nat.minus n m)
+          (logic.sym_eq
+             nat.nat
+             nat.O
+             (nat.minus n m)
+             (logic.eq_coerc
+                (logic.eq
+                   nat.nat
+                   (nat.minus nat.O (nat.minus m n))
+                   (nat.minus (nat.plus nat.O n) m))
+                (logic.eq nat.nat nat.O (nat.minus n m))
+                (nat.minus_le_minus_minus_comm m n nat.O nm)
+                (logic.rewrite_l
+                   nat.nat
+                   nat.O
+                   (__:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    logic.eq
+                      (cts.univ cts.star cts.box cts.I)
+                      (logic.eq nat.nat __ (nat.minus (nat.plus nat.O n) m))
+                      (logic.eq nat.nat nat.O (nat.minus n m)))
+                   (logic.rewrite_l
+                      nat.nat
+                      n
+                      (__:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       logic.eq
+                         (cts.univ cts.star cts.box cts.I)
+                         (logic.eq nat.nat nat.O (nat.minus __ m))
+                         (logic.eq nat.nat nat.O (nat.minus n m)))
+                      (logic.refl
+                         (cts.univ cts.star cts.box cts.I)
+                         (logic.eq nat.nat nat.O (nat.minus n m)))
+                      (nat.plus nat.O n)
+                      (nat.plus_O_n n))
+                   (nat.minus nat.O (nat.minus m n))
+                   (nat.minus_O_n (nat.minus m n)))))))
+    (nm:(cts.Term cts.star (connectives.Not (nat.le n m))) =>
+     quotient
+       q
+       (nat.minus n m)
+       (nat.minus (div_mod.div n q) (div_mod.div m q))
+       (logic.eq_ind_r
+          nat.nat
+          (nat.minus (nat.times q (div_mod.div n q)) (nat.times q (div_mod.div m q)))
+          (x:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           logic.eq nat.nat (nat.minus n m) x)
+          (logic.eq_ind_r
+             nat.nat
+             (nat.times (div_mod.div n q) q)
+             (x:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              logic.eq nat.nat (nat.minus n m) (nat.minus x (nat.times q (div_mod.div m q))))
+             (logic.eq_ind_r
+                nat.nat
+                (nat.times (div_mod.div m q) q)
+                (x:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         nat.nat)) =>
+                 logic.eq nat.nat (nat.minus n m) (nat.minus (nat.times (div_mod.div n q) q) x))
+                (logic.eq_ind_r
+                   nat.nat
+                   (nat.minus n (div_mod.mod n q))
+                   (x:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            nat.nat)) =>
+                    logic.eq
+                      nat.nat
+                      (nat.minus n m)
+                      (nat.minus x (nat.times (div_mod.div m q) q)))
+                   (logic.eq_ind_r
+                      nat.nat
+                      (nat.minus n (nat.plus (div_mod.mod n q) (nat.times (div_mod.div m q) q)))
+                      (x:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               nat.nat)) =>
+                       logic.eq nat.nat (nat.minus n m) x)
+                      (logic.eq_ind_r
+                         nat.nat
+                         (div_mod.mod m q)
+                         (x:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  nat.nat)) =>
+                          logic.eq
+                            nat.nat
+                            (nat.minus n m)
+                            (nat.minus n (nat.plus x (nat.times (div_mod.div m q) q))))
+                         (logic.eq_ind_r
+                            nat.nat
+                            (nat.plus (nat.times (div_mod.div m q) q) (div_mod.mod m q))
+                            (x:(cts.Term
+                                  cts.diamond
+                                  (cts.cast
+                                     cts.triangle
+                                     cts.sinf
+                                     (cts.univ cts.box cts.triangle cts.I)
+                                     (cts.univ cts.diamond cts.sinf cts.I)
+                                     cts.I
+                                     nat.nat)) =>
+                             logic.eq nat.nat (nat.minus n m) (nat.minus n x))
+                            (logic.eq_ind
+                               nat.nat
+                               m
+                               (x_1:(cts.Term
+                                       cts.diamond
+                                       (cts.cast
+                                          cts.triangle
+                                          cts.sinf
+                                          (cts.univ cts.box cts.triangle cts.I)
+                                          (cts.univ cts.diamond cts.sinf cts.I)
+                                          cts.I
+                                          nat.nat)) =>
+                                logic.eq nat.nat (nat.minus n m) (nat.minus n x_1))
+                               (logic.refl nat.nat (nat.minus n m))
+                               (nat.plus (nat.times (div_mod.div m q) q) (div_mod.mod m q))
+                               (div_mod.div_mod m q))
+                            (nat.plus (div_mod.mod m q) (nat.times (div_mod.div m q) q))
+                            (nat.commutative_plus
+                               (div_mod.mod m q)
+                               (nat.times (div_mod.div m q) q)))
+                         (div_mod.mod n q)
+                         eqmod)
+                      (nat.minus
+                         (nat.minus n (div_mod.mod n q))
+                         (nat.times (div_mod.div m q) q))
+                      (nat.minus_plus n (div_mod.mod n q) (nat.times (div_mod.div m q) q)))
+                   (nat.times (div_mod.div n q) q)
+                   (logic.rewrite_r
+                      nat.nat
+                      (nat.times q (div_mod.div n q))
+                      (__:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       logic.eq nat.nat __ (nat.minus n (div_mod.mod n q)))
+                      (logic.rewrite_l
+                         nat.nat
+                         (nat.times q (div_mod.div n q))
+                         (__:(cts.Term
+                                cts.diamond
+                                (cts.cast
+                                   cts.triangle
+                                   cts.sinf
+                                   (cts.univ cts.box cts.triangle cts.I)
+                                   (cts.univ cts.diamond cts.sinf cts.I)
+                                   cts.I
+                                   nat.nat)) =>
+                          logic.eq nat.nat (nat.times q (div_mod.div n q)) __)
+                         (logic.refl nat.nat (nat.times q (div_mod.div n q)))
+                         (nat.minus n (div_mod.mod n q))
+                         (logic.rewrite_l
+                            nat.nat
+                            (nat.times (div_mod.div n q) q)
+                            (__:(cts.Term
+                                   cts.diamond
+                                   (cts.cast
+                                      cts.triangle
+                                      cts.sinf
+                                      (cts.univ cts.box cts.triangle cts.I)
+                                      (cts.univ cts.diamond cts.sinf cts.I)
+                                      cts.I
+                                      nat.nat)) =>
+                             logic.eq nat.nat __ (nat.minus n (div_mod.mod n q)))
+                            (div_mod.eq_times_div_minus_mod n q)
+                            (nat.times q (div_mod.div n q))
+                            (nat.commutative_times (div_mod.div n q) q)))
+                      (nat.times (div_mod.div n q) q)
+                      (nat.commutative_times (div_mod.div n q) q)))
+                (nat.times q (div_mod.div m q))
+                (nat.commutative_times q (div_mod.div m q)))
+             (nat.times q (div_mod.div n q))
+             (nat.commutative_times q (div_mod.div n q)))
+          (nat.times q (nat.minus (div_mod.div n q) (div_mod.div m q)))
+          (nat.distributive_times_minus q (div_mod.div n q) (div_mod.div m q)))).
+
+def let_clause_1531 :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x0)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (divides x x0)
+                (x2 =>
+                 cts.prod
+                   cts.box
+                   cts.star
+                   cts.star
+                   cts.I
+                   nat.nat
+                   (x3 =>
+                    cts.prod
+                      cts.star
+                      cts.star
+                      cts.star
+                      cts.I
+                      (logic.eq nat.nat x0 (nat.times x nat.O))
+                      (x4 => logic.eq nat.nat x0 nat.O)))))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posm:(cts.Term cts.star (nat.lt nat.O m)) =>
+  _clearme:(cts.Term cts.star (divides n m)) =>
+  d:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  eqm:(cts.Term cts.star (logic.eq nat.nat m (nat.times n nat.O))) =>
+  logic.rewrite_r
+    nat.nat
+    (nat.times n nat.O)
+    (__:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              nat.nat)) =>
+     logic.eq nat.nat m __)
+    eqm
+    nat.O
+    (nat.times_n_O n).
+
+def let_clause_15311 :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x0)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (divides x x0)
+                (x2 =>
+                 cts.prod
+                   cts.box
+                   cts.star
+                   cts.star
+                   cts.I
+                   nat.nat
+                   (x3 =>
+                    cts.prod
+                      cts.box
+                      cts.star
+                      cts.star
+                      cts.I
+                      nat.nat
+                      (x4 =>
+                       cts.prod
+                         cts.star
+                         cts.star
+                         cts.star
+                         cts.I
+                         (logic.eq nat.nat x0 (nat.times x (nat.S x4)))
+                         (x5 => logic.eq nat.nat x0 (nat.plus x (nat.times x x4))))))))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posm:(cts.Term cts.star (nat.lt nat.O m)) =>
+  _clearme:(cts.Term cts.star (divides n m)) =>
+  d:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  p:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  eqm:(cts.Term cts.star (logic.eq nat.nat m (nat.times n (nat.S p)))) =>
+  logic.rewrite_r
+    nat.nat
+    (nat.times n (nat.S p))
+    (__:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              nat.nat)) =>
+     logic.eq nat.nat m __)
+    eqm
+    (nat.plus n (nat.times n p))
+    (nat.times_n_Sm n p).
+
+def divides_to_le :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x0)
+             (x1 => cts.prod cts.star cts.star cts.star cts.I (divides x x0) (x2 => nat.le x x0)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posm:(cts.Term cts.star (nat.lt nat.O m)) =>
+  _clearme:(cts.Term cts.star (divides n m)) =>
+  match_divides_prop
+    n
+    m
+    (nat.le n m)
+    (d:(cts.Term
+          cts.diamond
+          (cts.cast
+             cts.triangle
+             cts.sinf
+             (cts.univ cts.box cts.triangle cts.I)
+             (cts.univ cts.diamond cts.sinf cts.I)
+             cts.I
+             nat.nat)) =>
+     nat.match_nat_prop
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 nat.nat)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq nat.nat m (nat.times n __))
+          (x => nat.le n m))
+       (eqm:(cts.Term cts.star (logic.eq nat.nat m (nat.times n nat.O))) =>
+        connectives.falsity
+          (nat.le n m)
+          (logic.absurd
+             (nat.le (nat.S m) nat.O)
+             (logic.eq_coerc
+                (nat.le (nat.S nat.O) m)
+                (nat.le (nat.S m) nat.O)
+                posm
+                (logic.rewrite_l
+                   nat.nat
+                   m
+                   (__:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    logic.eq
+                      (cts.univ cts.star cts.box cts.I)
+                      (nat.le (nat.S __) m)
+                      (nat.le (nat.S m) nat.O))
+                   (logic.rewrite_l
+                      nat.nat
+                      m
+                      (__:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       logic.eq
+                         (cts.univ cts.star cts.box cts.I)
+                         (nat.le (nat.S m) m)
+                         (nat.le (nat.S m) __))
+                      (logic.refl (cts.univ cts.star cts.box cts.I) (nat.le (nat.S m) m))
+                      nat.O
+                      (let_clause_1531 n m posm _clearme d eqm))
+                   nat.O
+                   (let_clause_1531 n m posm _clearme d eqm)))
+             (nat.not_le_Sn_O m)))
+       (p:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                nat.nat)) =>
+        eqm:(cts.Term cts.star (logic.eq nat.nat m (nat.times n (nat.S p)))) =>
+        logic.eq_ind_r
+          nat.nat
+          (nat.times n (nat.S p))
+          (x:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           nat.le n x)
+          (logic.eq_coerc
+             (nat.le n (nat.plus n (nat.times n p)))
+             (nat.le n (nat.times n (nat.S p)))
+             (nat.le_plus_n_r (nat.times n p) n)
+             (logic.rewrite_l
+                nat.nat
+                (nat.plus n (nat.times n p))
+                (__:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          nat.nat)) =>
+                 logic.eq
+                   (cts.univ cts.star cts.box cts.I)
+                   (nat.le n (nat.plus n (nat.times n p)))
+                   (nat.le n __))
+                (logic.rewrite_l
+                   nat.nat
+                   m
+                   (__:(cts.Term
+                          cts.diamond
+                          (cts.cast
+                             cts.triangle
+                             cts.sinf
+                             (cts.univ cts.box cts.triangle cts.I)
+                             (cts.univ cts.diamond cts.sinf cts.I)
+                             cts.I
+                             nat.nat)) =>
+                    logic.eq
+                      (cts.univ cts.star cts.box cts.I)
+                      (nat.le n (nat.plus n (nat.times n p)))
+                      (nat.le n __))
+                   (logic.rewrite_l
+                      nat.nat
+                      m
+                      (__:(cts.Term
+                             cts.diamond
+                             (cts.cast
+                                cts.triangle
+                                cts.sinf
+                                (cts.univ cts.box cts.triangle cts.I)
+                                (cts.univ cts.diamond cts.sinf cts.I)
+                                cts.I
+                                nat.nat)) =>
+                       logic.eq (cts.univ cts.star cts.box cts.I) (nat.le n __) (nat.le n m))
+                      (logic.refl (cts.univ cts.star cts.box cts.I) (nat.le n m))
+                      (nat.plus n (nat.times n p))
+                      (let_clause_15311 n m posm _clearme d p eqm))
+                   (nat.plus n (nat.times n p))
+                   (let_clause_15311 n m posm _clearme d p eqm))
+                (nat.times n (nat.S p))
+                (nat.times_n_Sm n p)))
+          m
+          eqm)
+       d)
+    _clearme.
+
+def dividesb :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          nat.nat
+          (x => cts.prod cts.box cts.box cts.box cts.I nat.nat (x0 => bool.bool))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  nat.eqb (div_mod.mod m n) nat.O.
+
+def dividesb_true_to_divides :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool.bool (dividesb x x0) bool.true)
+             (x1 => divides x x0))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.match_Or_prop
+    (nat.lt nat.O n)
+    (logic.eq nat.nat nat.O n)
+    (cts.prod
+       cts.star
+       cts.star
+       cts.star
+       cts.I
+       (logic.eq bool.bool (dividesb n m) bool.true)
+       (x => divides n m))
+    (posn:(cts.Term cts.star (nat.lt nat.O n)) =>
+     divbnm:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.true)) =>
+     mod_O_to_divides n m posn (nat.eqb_true_to_eq (div_mod.mod m n) nat.O divbnm))
+    (eqnO:(cts.Term cts.star (logic.eq nat.nat nat.O n)) =>
+     logic.eq_ind
+       nat.nat
+       nat.O
+       (x_1:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  nat.nat)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq bool.bool (dividesb x_1 m) bool.true)
+          (x => divides x_1 m))
+       (nat.sym_eq_match_nat_type_O
+          nat.nat
+          m
+          (p:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           div_mod.mod_aux m m p)
+          (y:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool.bool (nat.eqb y nat.O) bool.true)
+             (x => divides nat.O m))
+          (eqbmO:(cts.Term cts.star (logic.eq bool.bool (nat.eqb m nat.O) bool.true)) =>
+           logic.eq_ind_r
+             nat.nat
+             nat.O
+             (x:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              divides nat.O x)
+             (divides_n_n nat.O)
+             m
+             (nat.eqb_true_to_eq m nat.O eqbmO)))
+       n
+       eqnO)
+    (nat.le_to_or_lt_eq nat.O n (nat.le_O_n n)).
+
+def dividesb_false_to_not_divides :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool.bool (dividesb x x0) bool.false)
+             (x1 => connectives.Not (divides x x0)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.match_Or_prop
+    (nat.lt nat.O n)
+    (logic.eq nat.nat nat.O n)
+    (cts.prod
+       cts.star
+       cts.star
+       cts.star
+       cts.I
+       (logic.eq bool.bool (dividesb n m) bool.false)
+       (x => connectives.Not (divides n m)))
+    (posn:(cts.Term cts.star (nat.lt nat.O n)) =>
+     ndivbnm:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.false)) =>
+     logic.not_to_not
+       (divides n m)
+       (logic.eq nat.nat (div_mod.mod m n) nat.O)
+       (divides_to_mod_O n m posn)
+       (nat.eqb_false_to_not_eq (div_mod.mod m n) nat.O ndivbnm))
+    (eqnO:(cts.Term cts.star (logic.eq nat.nat nat.O n)) =>
+     logic.eq_ind
+       nat.nat
+       nat.O
+       (x_1:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  nat.nat)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq bool.bool (dividesb x_1 m) bool.false)
+          (x => connectives.Not (divides x_1 m)))
+       (nat.sym_eq_match_nat_type_O
+          nat.nat
+          m
+          (p:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           div_mod.mod_aux m m p)
+          (y:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   nat.nat)) =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool.bool (nat.eqb y nat.O) bool.false)
+             (x => connectives.Not (divides nat.O m)))
+          (nat.nat_case
+             m
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       nat.nat)) =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (logic.eq bool.bool (nat.eqb __ nat.O) bool.false)
+                (x => connectives.Not (divides nat.O __)))
+             (nat.sym_eq_eqb
+                nat.O
+                (y:(cts.Term
+                      cts.diamond
+                      (cts.cast
+                         cts.triangle
+                         cts.sinf
+                         (cts.univ cts.box cts.triangle cts.I)
+                         (cts.univ cts.diamond cts.sinf cts.I)
+                         cts.I
+                         (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => bool.bool)))) =>
+                 cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   (logic.eq nat.nat m nat.O)
+                   (x =>
+                    cts.prod
+                      cts.star
+                      cts.star
+                      cts.star
+                      cts.I
+                      (logic.eq bool.bool (y nat.O) bool.false)
+                      (x0 => connectives.Not (divides nat.O nat.O))))
+                (nat.sym_eq_filter_nat_type_O
+                   (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => bool.bool))
+                   nat.eqb_body
+                   (y:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            (cts.prod
+                               cts.box
+                               cts.box
+                               cts.box
+                               cts.I
+                               nat.nat
+                               (x => bool.bool)))) =>
+                    cts.prod
+                      cts.star
+                      cts.star
+                      cts.star
+                      cts.I
+                      (logic.eq nat.nat m nat.O)
+                      (x =>
+                       cts.prod
+                         cts.star
+                         cts.star
+                         cts.star
+                         cts.I
+                         (logic.eq bool.bool (y nat.O) bool.false)
+                         (x0 => connectives.Not (divides nat.O nat.O))))
+                   (nat.sym_eq_eqb_body_O
+                      (y:(cts.Term
+                            cts.diamond
+                            (cts.cast
+                               cts.triangle
+                               cts.sinf
+                               (cts.univ cts.box cts.triangle cts.I)
+                               (cts.univ cts.diamond cts.sinf cts.I)
+                               cts.I
+                               (cts.prod
+                                  cts.box
+                                  cts.box
+                                  cts.box
+                                  cts.I
+                                  nat.nat
+                                  (x => bool.bool)))) =>
+                       cts.prod
+                         cts.star
+                         cts.star
+                         cts.star
+                         cts.I
+                         (logic.eq nat.nat m nat.O)
+                         (x =>
+                          cts.prod
+                            cts.star
+                            cts.star
+                            cts.star
+                            cts.I
+                            (logic.eq bool.bool (y nat.O) bool.false)
+                            (x0 => connectives.Not (divides nat.O nat.O))))
+                      (nat.sym_eq_match_nat_type_O
+                         bool.bool
+                         bool.true
+                         (q:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  nat.nat)) =>
+                          bool.false)
+                         (y:(cts.Term
+                               cts.diamond
+                               (cts.cast
+                                  cts.triangle
+                                  cts.sinf
+                                  (cts.univ cts.box cts.triangle cts.I)
+                                  (cts.univ cts.diamond cts.sinf cts.I)
+                                  cts.I
+                                  bool.bool)) =>
+                          cts.prod
+                            cts.star
+                            cts.star
+                            cts.star
+                            cts.I
+                            (logic.eq nat.nat m nat.O)
+                            (x =>
+                             cts.prod
+                               cts.star
+                               cts.star
+                               cts.star
+                               cts.I
+                               (logic.eq bool.bool y bool.false)
+                               (x0 => connectives.Not (divides nat.O nat.O))))
+                         (auto:(cts.Term cts.star (logic.eq nat.nat m nat.O)) =>
+                          auto':(cts.Term
+                                   cts.star
+                                   (logic.eq bool.bool bool.true bool.false)) =>
+                          logic.not_to_not
+                            (divides nat.O nat.O)
+                            (logic.eq bool.bool bool.true bool.false)
+                            (auto'':(cts.Term cts.star (divides nat.O nat.O)) =>
+                             logic.rewrite_l
+                               bool.bool
+                               bool.true
+                               (__:(cts.Term
+                                      cts.diamond
+                                      (cts.cast
+                                         cts.triangle
+                                         cts.sinf
+                                         (cts.univ cts.box cts.triangle cts.I)
+                                         (cts.univ cts.diamond cts.sinf cts.I)
+                                         cts.I
+                                         bool.bool)) =>
+                                logic.eq bool.bool bool.true __)
+                               (logic.refl bool.bool bool.true)
+                               bool.false
+                               auto')
+                            bool.not_eq_true_false)))))
+             (a:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      nat.nat)) =>
+              __:(cts.Term cts.star (logic.eq nat.nat m (nat.S a))) =>
+              _0:(cts.Term cts.star (logic.eq bool.bool (nat.eqb (nat.S a) nat.O) bool.false)) =>
+              connectives.nmk
+                (divides nat.O (nat.S a))
+                (_clearme:(cts.Term cts.star (divides nat.O (nat.S a))) =>
+                 match_divides_prop
+                   nat.O
+                   (nat.S a)
+                   connectives.False
+                   (q:(cts.Term
+                         cts.diamond
+                         (cts.cast
+                            cts.triangle
+                            cts.sinf
+                            (cts.univ cts.box cts.triangle cts.I)
+                            (cts.univ cts.diamond cts.sinf cts.I)
+                            cts.I
+                            nat.nat)) =>
+                    auto:(cts.Term cts.star (logic.eq nat.nat (nat.S a) (nat.times nat.O q))) =>
+                    logic.absurd
+                      (logic.eq nat.nat nat.O (nat.S a))
+                      (logic.rewrite_r
+                         nat.nat
+                         n
+                         (__1:(cts.Term
+                                 cts.diamond
+                                 (cts.cast
+                                    cts.triangle
+                                    cts.sinf
+                                    (cts.univ cts.box cts.triangle cts.I)
+                                    (cts.univ cts.diamond cts.sinf cts.I)
+                                    cts.I
+                                    nat.nat)) =>
+                          logic.eq nat.nat __1 (nat.S a))
+                         (logic.rewrite_l
+                            nat.nat
+                            (nat.S a)
+                            (__1:(cts.Term
+                                    cts.diamond
+                                    (cts.cast
+                                       cts.triangle
+                                       cts.sinf
+                                       (cts.univ cts.box cts.triangle cts.I)
+                                       (cts.univ cts.diamond cts.sinf cts.I)
+                                       cts.I
+                                       nat.nat)) =>
+                             logic.eq nat.nat __1 (nat.S a))
+                            (logic.refl nat.nat (nat.S a))
+                            n
+                            (logic.rewrite_l
+                               nat.nat
+                               nat.O
+                               (__1:(cts.Term
+                                       cts.diamond
+                                       (cts.cast
+                                          cts.triangle
+                                          cts.sinf
+                                          (cts.univ cts.box cts.triangle cts.I)
+                                          (cts.univ cts.diamond cts.sinf cts.I)
+                                          cts.I
+                                          nat.nat)) =>
+                                logic.eq nat.nat (nat.S a) __1)
+                               (logic.rewrite_r
+                                  nat.nat
+                                  (nat.times q nat.O)
+                                  (__1:(cts.Term
+                                          cts.diamond
+                                          (cts.cast
+                                             cts.triangle
+                                             cts.sinf
+                                             (cts.univ cts.box cts.triangle cts.I)
+                                             (cts.univ cts.diamond cts.sinf cts.I)
+                                             cts.I
+                                             nat.nat)) =>
+                                   logic.eq nat.nat (nat.S a) __1)
+                                  (logic.rewrite_l
+                                     nat.nat
+                                     (nat.times nat.O q)
+                                     (__1:(cts.Term
+                                             cts.diamond
+                                             (cts.cast
+                                                cts.triangle
+                                                cts.sinf
+                                                (cts.univ cts.box cts.triangle cts.I)
+                                                (cts.univ cts.diamond cts.sinf cts.I)
+                                                cts.I
+                                                nat.nat)) =>
+                                      logic.eq nat.nat (nat.S a) __1)
+                                     auto
+                                     (nat.times q nat.O)
+                                     (nat.commutative_times nat.O q))
+                                  nat.O
+                                  (nat.times_n_O q))
+                               n
+                               eqnO))
+                         nat.O
+                         eqnO)
+                      (nat.not_eq_O_S a))
+                   _clearme))))
+       n
+       eqnO)
+    (nat.le_to_or_lt_eq nat.O n (nat.le_O_n n)).
+
+def decidable_divides :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => cts.prod cts.box cts.star cts.star cts.I nat.nat (x0 => logic.decidable (divides x x0))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.match_Or_prop
+    (logic.eq bool.bool (dividesb n m) bool.true)
+    (logic.eq bool.bool (dividesb n m) bool.false)
+    (logic.decidable (divides n m))
+    (auto:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.true)) =>
+     connectives.or_introl
+       (divides n m)
+       (connectives.Not (divides n m))
+       (dividesb_true_to_divides
+          n
+          m
+          (logic.rewrite_r
+             bool.bool
+             bool.true
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       bool.bool)) =>
+              logic.eq bool.bool __ bool.true)
+             (logic.refl bool.bool bool.true)
+             (dividesb n m)
+             auto)))
+    (auto:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.false)) =>
+     connectives.or_intror
+       (divides n m)
+       (connectives.Not (divides n m))
+       (dividesb_false_to_not_divides
+          n
+          m
+          (logic.rewrite_r
+             bool.bool
+             bool.false
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       bool.bool)) =>
+              logic.eq bool.bool __ bool.false)
+             (logic.refl bool.bool bool.false)
+             (dividesb n m)
+             auto)))
+    (bool.true_or_false (dividesb n m)).
+
+def divides_to_dividesb_true :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (divides x x0)
+                (x2 => logic.eq bool.bool (dividesb x x0) bool.true)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posn:(cts.Term cts.star (nat.lt nat.O n)) =>
+  divnm:(cts.Term cts.star (divides n m)) =>
+  connectives.match_Or_prop
+    (logic.eq bool.bool (dividesb n m) bool.true)
+    (logic.eq bool.bool (dividesb n m) bool.false)
+    (logic.eq bool.bool (dividesb n m) bool.true)
+    (auto:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.true)) =>
+     logic.rewrite_r
+       bool.bool
+       bool.true
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 bool.bool)) =>
+        logic.eq bool.bool __ bool.true)
+       (logic.refl bool.bool bool.true)
+       (dividesb n m)
+       auto)
+    (ndivbnm:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.false)) =>
+     connectives.falsity
+       (logic.eq bool.bool (dividesb n m) bool.true)
+       (logic.absurd
+          (divides n m)
+          divnm
+          (dividesb_false_to_not_divides
+             n
+             m
+             (logic.rewrite_r
+                bool.bool
+                bool.false
+                (__:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          bool.bool)) =>
+                 logic.eq bool.bool __ bool.false)
+                (logic.refl bool.bool bool.false)
+                (dividesb n m)
+                ndivbnm))))
+    (bool.true_or_false (dividesb n m)).
+
+def not_divides_to_dividesb_false :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          nat.nat
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt nat.O x)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (connectives.Not (divides x x0))
+                (x2 => logic.eq bool.bool (dividesb x x0) bool.false)))))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  m:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  posn:(cts.Term cts.star (nat.lt nat.O n)) =>
+  connectives.match_Or_prop
+    (logic.eq bool.bool (dividesb n m) bool.true)
+    (logic.eq bool.bool (dividesb n m) bool.false)
+    (cts.prod
+       cts.star
+       cts.star
+       cts.star
+       cts.I
+       (connectives.Not (divides n m))
+       (x => logic.eq bool.bool (dividesb n m) bool.false))
+    (divbnm:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.true)) =>
+     ndivnm:(cts.Term cts.star (connectives.Not (divides n m))) =>
+     connectives.falsity
+       (logic.eq bool.bool (dividesb n m) bool.false)
+       (logic.absurd
+          (divides n m)
+          (dividesb_true_to_divides
+             n
+             m
+             (logic.rewrite_r
+                bool.bool
+                bool.true
+                (__:(cts.Term
+                       cts.diamond
+                       (cts.cast
+                          cts.triangle
+                          cts.sinf
+                          (cts.univ cts.box cts.triangle cts.I)
+                          (cts.univ cts.diamond cts.sinf cts.I)
+                          cts.I
+                          bool.bool)) =>
+                 logic.eq bool.bool __ bool.true)
+                (logic.refl bool.bool bool.true)
+                (dividesb n m)
+                divbnm))
+          ndivnm))
+    (auto:(cts.Term cts.star (logic.eq bool.bool (dividesb n m) bool.false)) =>
+     auto':(cts.Term cts.star (connectives.Not (divides n m))) =>
+     logic.rewrite_r
+       bool.bool
+       bool.false
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 bool.bool)) =>
+        logic.eq bool.bool __ bool.false)
+       (logic.refl bool.bool bool.false)
+       (dividesb n m)
+       auto)
+    (bool.true_or_false (dividesb n m)).
+
+def prime :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod cts.box cts.box cts.box cts.I nat.nat (x => cts.univ cts.star cts.box cts.I)))
+  :=
+  n:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  connectives.And
+    (nat.lt (nat.S nat.O) n)
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (divides x n)
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt (nat.S nat.O) x)
+             (x1 => logic.eq nat.nat x n)))).
+
+def prime_to_lt_O :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => cts.prod cts.star cts.star cts.star cts.I (prime x) (x0 => nat.lt nat.O x)))
+  :=
+  p:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  _clearme:(cts.Term cts.star (prime p)) =>
+  connectives.match_And_prop
+    (nat.lt (nat.S nat.O) p)
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (divides x p)
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt (nat.S nat.O) x)
+             (x1 => logic.eq nat.nat x p))))
+    (nat.lt nat.O p)
+    (lt1p:(cts.Term cts.star (nat.lt (nat.S nat.O) p)) =>
+     auto:(cts.Term
+             cts.star
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                nat.nat
+                (x =>
+                 cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   (divides x p)
+                   (x0 =>
+                    cts.prod
+                      cts.star
+                      cts.star
+                      cts.star
+                      cts.I
+                      (nat.lt (nat.S nat.O) x)
+                      (x1 => logic.eq nat.nat x p))))) =>
+     nat.lt_S_to_lt nat.O p lt1p)
+    _clearme.
+
+def prime_to_lt_SO :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x => cts.prod cts.star cts.star cts.star cts.I (prime x) (x0 => nat.lt (nat.S nat.O) x)))
+  :=
+  p:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          nat.nat)) =>
+  _clearme:(cts.Term cts.star (prime p)) =>
+  connectives.match_And_prop
+    (nat.lt (nat.S nat.O) p)
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       nat.nat
+       (x =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (divides x p)
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (nat.lt (nat.S nat.O) x)
+             (x1 => logic.eq nat.nat x p))))
+    (nat.lt (nat.S nat.O) p)
+    (lt1p:(cts.Term cts.star (nat.lt (nat.S nat.O) p)) =>
+     auto:(cts.Term
+             cts.star
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                nat.nat
+                (x =>
+                 cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   (divides x p)
+                   (x0 =>
+                    cts.prod
+                      cts.star
+                      cts.star
+                      cts.star
+                      cts.I
+                      (nat.lt (nat.S nat.O) x)
+                      (x1 => logic.eq nat.nat x p))))) =>
+     lt1p)
+    _clearme.
+

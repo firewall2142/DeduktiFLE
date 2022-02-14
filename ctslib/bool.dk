@@ -1,0 +1,1166 @@
+bool : cts.Term cts.triangle (cts.univ cts.box cts.triangle cts.I).
+
+true :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       bool).
+
+false :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       bool).
+
+match_bool_prop :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.prod cts.box cts.box cts.box cts.I bool (x => cts.univ cts.star cts.box cts.I))
+       (x =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (x true)
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (x false)
+             (x1 => cts.prod cts.box cts.star cts.star cts.I bool (x2 => x x2))))).
+
+match_bool_type :
+  cts.Term
+    cts.diamond
+    (cts.prod
+       cts.triangle
+       cts.diamond
+       cts.diamond
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          (cts.prod
+             cts.box
+             cts.box
+             cts.box
+             cts.I
+             x
+             (x0 =>
+              cts.prod
+                cts.box
+                cts.box
+                cts.box
+                cts.I
+                x
+                (x1 => cts.prod cts.box cts.box cts.box cts.I bool (x2 => x)))))).
+
+axiom_match_bool_type_true :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          x
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => connectives.equal x (match_bool_type x x0 x1 true) x0)))).
+
+def eq_match_bool_type_true :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          x
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => leibniz.leibniz x (match_bool_type x x0 x1 true) x0))))
+  :=
+  return:(cts.Term cts.triangle (cts.univ cts.box cts.triangle cts.I)) =>
+  case_true:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  return)) =>
+  case_false:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   return)) =>
+  connectives.equal_leibniz
+    return
+    (match_bool_type return case_true case_false true)
+    case_true
+    (axiom_match_bool_type_true return case_true case_false).
+
+axiom_match_bool_type_false :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          x
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => connectives.equal x (match_bool_type x x0 x1 false) x1)))).
+
+def eq_match_bool_type_false :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          x
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => leibniz.leibniz x (match_bool_type x x0 x1 false) x1))))
+  :=
+  return:(cts.Term cts.triangle (cts.univ cts.box cts.triangle cts.I)) =>
+  case_true:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  return)) =>
+  case_false:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   return)) =>
+  connectives.equal_leibniz
+    return
+    (match_bool_type return case_true case_false false)
+    case_false
+    (axiom_match_bool_type_false return case_true case_false).
+
+def sym_eq_match_bool_type_true :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          x
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => leibniz.leibniz x x0 (match_bool_type x x0 x1 true)))))
+  :=
+  return:(cts.Term cts.triangle (cts.univ cts.box cts.triangle cts.I)) =>
+  case_true:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  return)) =>
+  case_false:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   return)) =>
+  leibniz.sym_leibniz
+    return
+    (match_bool_type return case_true case_false true)
+    case_true
+    (eq_match_bool_type_true return case_true case_false).
+
+def sym_eq_match_bool_type_false :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          x
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => leibniz.leibniz x x1 (match_bool_type x x0 x1 false)))))
+  :=
+  return:(cts.Term cts.triangle (cts.univ cts.box cts.triangle cts.I)) =>
+  case_true:(cts.Term
+               cts.diamond
+               (cts.cast
+                  cts.triangle
+                  cts.sinf
+                  (cts.univ cts.box cts.triangle cts.I)
+                  (cts.univ cts.diamond cts.sinf cts.I)
+                  cts.I
+                  return)) =>
+  case_false:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   return)) =>
+  leibniz.sym_leibniz
+    return
+    (match_bool_type return case_true case_false false)
+    case_false
+    (eq_match_bool_type_false return case_true case_false).
+
+def bool_discr :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       bool
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          bool
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool x x0)
+             (x1 =>
+              match_bool_type
+                (cts.univ cts.star cts.box cts.I)
+                (match_bool_type
+                   (cts.univ cts.star cts.box cts.I)
+                   (cts.prod
+                      cts.box
+                      cts.star
+                      cts.star
+                      cts.I
+                      (cts.univ cts.star cts.box cts.I)
+                      (x2 => cts.prod cts.star cts.star cts.star cts.I x2 (x3 => x2)))
+                   (cts.prod
+                      cts.box
+                      cts.star
+                      cts.star
+                      cts.I
+                      (cts.univ cts.star cts.box cts.I)
+                      (x2 => x2))
+                   x0)
+                (match_bool_type
+                   (cts.univ cts.star cts.box cts.I)
+                   (cts.prod
+                      cts.box
+                      cts.star
+                      cts.star
+                      cts.I
+                      (cts.univ cts.star cts.box cts.I)
+                      (x2 => x2))
+                   (cts.prod
+                      cts.box
+                      cts.star
+                      cts.star
+                      cts.I
+                      (cts.univ cts.star cts.box cts.I)
+                      (x2 => cts.prod cts.star cts.star cts.star cts.I x2 (x3 => x2)))
+                   x0)
+                x))))
+  :=
+  x:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          bool)) =>
+  y:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          bool)) =>
+  Deq:(cts.Term cts.star (logic.eq bool x y)) =>
+  logic.eq_ind
+    bool
+    x
+    (x_13:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                bool)) =>
+     match_bool_type
+       (cts.univ cts.star cts.box cts.I)
+       (match_bool_type
+          (cts.univ cts.star cts.box cts.I)
+          (cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+          (cts.prod cts.box cts.star cts.star cts.I (cts.univ cts.star cts.box cts.I) (x0 => x0))
+          x_13)
+       (match_bool_type
+          (cts.univ cts.star cts.box cts.I)
+          (cts.prod cts.box cts.star cts.star cts.I (cts.univ cts.star cts.box cts.I) (x0 => x0))
+          (cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+          x_13)
+       x)
+    (match_bool_prop
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 bool)) =>
+        match_bool_type
+          (cts.univ cts.star cts.box cts.I)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             __)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             __)
+          __)
+       (sym_eq_match_bool_type_true
+          (cts.univ cts.star cts.box cts.I)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             true)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             true)
+          (x0:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    (cts.univ cts.star cts.box cts.I))) =>
+           x0)
+          (sym_eq_match_bool_type_true
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             (x0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       (cts.univ cts.star cts.box cts.I))) =>
+              x0)
+             (P:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      (cts.univ cts.star cts.box cts.I))) =>
+              DH:(cts.Term cts.star P) => DH)))
+       (sym_eq_match_bool_type_false
+          (cts.univ cts.star cts.box cts.I)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             false)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             false)
+          (x0:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    (cts.univ cts.star cts.box cts.I))) =>
+           x0)
+          (sym_eq_match_bool_type_false
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => x0))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => x0)))
+             (x0:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       (cts.univ cts.star cts.box cts.I))) =>
+              x0)
+             (P:(cts.Term
+                   cts.diamond
+                   (cts.cast
+                      cts.triangle
+                      cts.sinf
+                      (cts.univ cts.box cts.triangle cts.I)
+                      (cts.univ cts.diamond cts.sinf cts.I)
+                      cts.I
+                      (cts.univ cts.star cts.box cts.I))) =>
+              DH:(cts.Term cts.star P) => DH)))
+       x)
+    y
+    Deq.
+
+def not_eq_true_false :
+  cts.Term cts.star (connectives.Not (logic.eq bool true false))
+  :=
+  connectives.nmk
+    (logic.eq bool true false)
+    (Heq:(cts.Term cts.star (logic.eq bool true false)) =>
+     eq_match_bool_type_false
+       (cts.univ cts.star cts.box cts.I)
+       (cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x => cts.prod cts.star cts.star cts.star cts.I x (x0 => x)))
+       (cts.prod cts.box cts.star cts.star cts.I (cts.univ cts.star cts.box cts.I) (x => x))
+       (x:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                (cts.univ cts.star cts.box cts.I))) =>
+        x)
+       (eq_match_bool_type_true
+          (cts.univ cts.star cts.box cts.I)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x => cts.prod cts.star cts.star cts.star cts.I x (x0 => x)))
+             (cts.prod cts.box cts.star cts.star cts.I (cts.univ cts.star cts.box cts.I) (x => x))
+             false)
+          (match_bool_type
+             (cts.univ cts.star cts.box cts.I)
+             (cts.prod cts.box cts.star cts.star cts.I (cts.univ cts.star cts.box cts.I) (x => x))
+             (cts.prod
+                cts.box
+                cts.star
+                cts.star
+                cts.I
+                (cts.univ cts.star cts.box cts.I)
+                (x => cts.prod cts.star cts.star cts.star cts.I x (x0 => x)))
+             false)
+          (x:(cts.Term
+                cts.diamond
+                (cts.cast
+                   cts.triangle
+                   cts.sinf
+                   (cts.univ cts.box cts.triangle cts.I)
+                   (cts.univ cts.diamond cts.sinf cts.I)
+                   cts.I
+                   (cts.univ cts.star cts.box cts.I))) =>
+           x)
+          (bool_discr true false Heq))
+       connectives.False).
+
+def notb :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod cts.box cts.box cts.box cts.I bool (x => bool)))
+  :=
+  b:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          bool)) =>
+  match_bool_type bool false true b.
+
+def andb :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          bool
+          (x => cts.prod cts.box cts.box cts.box cts.I bool (x0 => bool))))
+  :=
+  b1:(cts.Term
+        cts.diamond
+        (cts.cast
+           cts.triangle
+           cts.sinf
+           (cts.univ cts.box cts.triangle cts.I)
+           (cts.univ cts.diamond cts.sinf cts.I)
+           cts.I
+           bool)) =>
+  b2:(cts.Term
+        cts.diamond
+        (cts.cast
+           cts.triangle
+           cts.sinf
+           (cts.univ cts.box cts.triangle cts.I)
+           (cts.univ cts.diamond cts.sinf cts.I)
+           cts.I
+           bool)) =>
+  match_bool_type bool b2 false b1.
+
+def andb_true_l :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       bool
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          bool
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool (andb x x0) true)
+             (x1 => logic.eq bool x true))))
+  :=
+  b1:(cts.Term
+        cts.diamond
+        (cts.cast
+           cts.triangle
+           cts.sinf
+           (cts.univ cts.box cts.triangle cts.I)
+           (cts.univ cts.diamond cts.sinf cts.I)
+           cts.I
+           bool)) =>
+  match_bool_prop
+    (__:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              bool)) =>
+     cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       bool
+       (x =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq bool (andb __ x) true)
+          (x0 => logic.eq bool __ true)))
+    (b2:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              bool)) =>
+     sym_eq_match_bool_type_true
+       bool
+       b2
+       false
+       (x:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                bool)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq bool x true)
+          (x0 => logic.eq bool true true))
+       (auto:(cts.Term cts.star (logic.eq bool b2 true)) =>
+        logic.rewrite_l
+          bool
+          b2
+          (__:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    bool)) =>
+           logic.eq bool __ true)
+          (logic.rewrite_l
+             bool
+             b2
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       bool)) =>
+              logic.eq bool b2 __)
+             (logic.refl bool b2)
+             true
+             auto)
+          true
+          auto))
+    (_b2:(cts.Term
+            cts.diamond
+            (cts.cast
+               cts.triangle
+               cts.sinf
+               (cts.univ cts.box cts.triangle cts.I)
+               (cts.univ cts.diamond cts.sinf cts.I)
+               cts.I
+               bool)) =>
+     sym_eq_match_bool_type_false
+       bool
+       _b2
+       false
+       (x:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                bool)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq bool x true)
+          (x0 => logic.eq bool false true))
+       (auto:(cts.Term cts.star (logic.eq bool false true)) =>
+        logic.rewrite_r
+          bool
+          true
+          (__:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    bool)) =>
+           logic.eq bool __ true)
+          (logic.refl bool true)
+          false
+          auto))
+    b1.
+
+def andb_true_r :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       bool
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          bool
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool (andb x x0) true)
+             (x1 => logic.eq bool x0 true))))
+  :=
+  b1:(cts.Term
+        cts.diamond
+        (cts.cast
+           cts.triangle
+           cts.sinf
+           (cts.univ cts.box cts.triangle cts.I)
+           (cts.univ cts.diamond cts.sinf cts.I)
+           cts.I
+           bool)) =>
+  b2:(cts.Term
+        cts.diamond
+        (cts.cast
+           cts.triangle
+           cts.sinf
+           (cts.univ cts.box cts.triangle cts.I)
+           (cts.univ cts.diamond cts.sinf cts.I)
+           cts.I
+           bool)) =>
+  match_bool_prop
+    (__:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              bool)) =>
+     cts.prod
+       cts.star
+       cts.star
+       cts.star
+       cts.I
+       (logic.eq bool (andb __ b2) true)
+       (x => logic.eq bool b2 true))
+    (sym_eq_match_bool_type_true
+       bool
+       b2
+       false
+       (x:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                bool)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq bool x true)
+          (x0 => logic.eq bool b2 true))
+       (auto:(cts.Term cts.star (logic.eq bool b2 true)) =>
+        logic.rewrite_l
+          bool
+          b2
+          (__:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    bool)) =>
+           logic.eq bool b2 __)
+          (logic.refl bool b2)
+          true
+          auto))
+    (sym_eq_match_bool_type_false
+       bool
+       b2
+       false
+       (x:(cts.Term
+             cts.diamond
+             (cts.cast
+                cts.triangle
+                cts.sinf
+                (cts.univ cts.box cts.triangle cts.I)
+                (cts.univ cts.diamond cts.sinf cts.I)
+                cts.I
+                bool)) =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (logic.eq bool x true)
+          (x0 => logic.eq bool b2 true))
+       (match_bool_prop
+          (__:(cts.Term
+                 cts.diamond
+                 (cts.cast
+                    cts.triangle
+                    cts.sinf
+                    (cts.univ cts.box cts.triangle cts.I)
+                    (cts.univ cts.diamond cts.sinf cts.I)
+                    cts.I
+                    bool)) =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (logic.eq bool false true)
+             (x => logic.eq bool __ true))
+          (auto:(cts.Term cts.star (logic.eq bool false true)) => logic.refl bool true)
+          (auto:(cts.Term cts.star (logic.eq bool false true)) =>
+           logic.rewrite_r
+             bool
+             true
+             (__:(cts.Term
+                    cts.diamond
+                    (cts.cast
+                       cts.triangle
+                       cts.sinf
+                       (cts.univ cts.box cts.triangle cts.I)
+                       (cts.univ cts.diamond cts.sinf cts.I)
+                       cts.I
+                       bool)) =>
+              logic.eq bool __ true)
+             (logic.refl bool true)
+             false
+             auto)
+          b2))
+    b1.
+
+def true_or_false :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       bool
+       (x => connectives.Or (logic.eq bool x true) (logic.eq bool x false)))
+  :=
+  b:(cts.Term
+       cts.diamond
+       (cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          bool)) =>
+  match_bool_prop
+    (__:(cts.Term
+           cts.diamond
+           (cts.cast
+              cts.triangle
+              cts.sinf
+              (cts.univ cts.box cts.triangle cts.I)
+              (cts.univ cts.diamond cts.sinf cts.I)
+              cts.I
+              bool)) =>
+     connectives.Or (logic.eq bool __ true) (logic.eq bool __ false))
+    (connectives.or_introl
+       (logic.eq bool true true)
+       (logic.eq bool true false)
+       (logic.refl bool true))
+    (relations.RC_reflexive
+       bool
+       (__:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 bool)) =>
+        _0:(cts.Term
+              cts.diamond
+              (cts.cast
+                 cts.triangle
+                 cts.sinf
+                 (cts.univ cts.box cts.triangle cts.I)
+                 (cts.univ cts.diamond cts.sinf cts.I)
+                 cts.I
+                 bool)) =>
+        logic.eq bool false true)
+       false)
+    b.
+

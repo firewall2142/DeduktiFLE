@@ -1,0 +1,455 @@
+True :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.univ cts.star cts.box cts.I)).
+
+False :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.univ cts.star cts.box cts.I)).
+
+Not :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x => cts.univ cts.star cts.box cts.I))).
+
+And :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x =>
+           cts.prod
+             cts.box
+             cts.box
+             cts.box
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x0 => cts.univ cts.star cts.box cts.I)))).
+
+Or :
+  cts.Term
+    cts.diamond
+    (cts.cast
+       cts.triangle
+       cts.sinf
+       (cts.univ cts.box cts.triangle cts.I)
+       (cts.univ cts.diamond cts.sinf cts.I)
+       cts.I
+       (cts.prod
+          cts.box
+          cts.box
+          cts.box
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x =>
+           cts.prod
+             cts.box
+             cts.box
+             cts.box
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x0 => cts.univ cts.star cts.box cts.I)))).
+
+ex :
+  cts.Term
+    cts.diamond
+    (cts.prod
+       cts.triangle
+       cts.diamond
+       cts.diamond
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          (cts.prod
+             cts.box
+             cts.box
+             cts.box
+             cts.I
+             (cts.prod cts.box cts.box cts.box cts.I x (x0 => cts.univ cts.star cts.box cts.I))
+             (x0 => cts.univ cts.star cts.box cts.I)))).
+
+equal :
+  cts.Term
+    cts.diamond
+    (cts.prod
+       cts.triangle
+       cts.diamond
+       cts.diamond
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.cast
+          cts.triangle
+          cts.sinf
+          (cts.univ cts.box cts.triangle cts.I)
+          (cts.univ cts.diamond cts.sinf cts.I)
+          cts.I
+          (cts.prod
+             cts.box
+             cts.box
+             cts.box
+             cts.I
+             x
+             (x0 =>
+              cts.prod cts.box cts.box cts.box cts.I x (x1 => cts.univ cts.star cts.box cts.I))))).
+
+I : cts.Term cts.star True.
+
+falsity :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x => cts.prod cts.star cts.star cts.star cts.I False (x0 => x))).
+
+nmk :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x =>
+        cts.prod
+          cts.star
+          cts.star
+          cts.star
+          cts.I
+          (cts.prod cts.star cts.star cts.star cts.I x (x0 => False))
+          (x0 => Not x))).
+
+Not_ind :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             (cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (cts.prod cts.star cts.star cts.star cts.I x (x1 => False))
+                (x1 => x0))
+             (x1 => cts.prod cts.star cts.star cts.star cts.I (Not x) (x2 => x0))))).
+
+conj :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x0 =>
+           cts.prod
+             cts.star
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => cts.prod cts.star cts.star cts.star cts.I x0 (x2 => And x x0))))).
+
+match_And_prop :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   x
+                   (x2 => cts.prod cts.star cts.star cts.star cts.I x0 (x3 => x1)))
+                (x2 => cts.prod cts.star cts.star cts.star cts.I (And x x0) (x3 => x1)))))).
+
+or_introl :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x0 => cts.prod cts.star cts.star cts.star cts.I x (x1 => Or x x0)))).
+
+or_intror :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x0 => cts.prod cts.star cts.star cts.star cts.I x0 (x1 => Or x x0)))).
+
+match_Or_prop :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.box
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.star cts.box cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.univ cts.star cts.box cts.I)
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (cts.prod cts.star cts.star cts.star cts.I x (x2 => x1))
+                (x2 =>
+                 cts.prod
+                   cts.star
+                   cts.star
+                   cts.star
+                   cts.I
+                   (cts.prod cts.star cts.star cts.star cts.I x0 (x3 => x1))
+                   (x3 => cts.prod cts.star cts.star cts.star cts.I (Or x x0) (x4 => x1))))))).
+
+ex_intro :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.prod cts.box cts.box cts.box cts.I x (x0 => cts.univ cts.star cts.box cts.I))
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 => cts.prod cts.star cts.star cts.star cts.I (x0 x1) (x2 => ex x x0))))).
+
+match_ex_prop :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          (cts.prod cts.box cts.box cts.box cts.I x (x0 => cts.univ cts.star cts.box cts.I))
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             (cts.univ cts.star cts.box cts.I)
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (cts.prod
+                   cts.box
+                   cts.star
+                   cts.star
+                   cts.I
+                   x
+                   (x2 => cts.prod cts.star cts.star cts.star cts.I (x0 x2) (x3 => x1)))
+                (x2 => cts.prod cts.star cts.star cts.star cts.I (ex x x0) (x3 => x1)))))).
+
+refl_equal :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x => cts.prod cts.box cts.star cts.star cts.I x (x0 => equal x x0 x0))).
+
+equal_leibniz :
+  cts.Term
+    cts.star
+    (cts.prod
+       cts.triangle
+       cts.star
+       cts.star
+       cts.I
+       (cts.univ cts.box cts.triangle cts.I)
+       (x =>
+        cts.prod
+          cts.box
+          cts.star
+          cts.star
+          cts.I
+          x
+          (x0 =>
+           cts.prod
+             cts.box
+             cts.star
+             cts.star
+             cts.I
+             x
+             (x1 =>
+              cts.prod
+                cts.star
+                cts.star
+                cts.star
+                cts.I
+                (equal x x0 x1)
+                (x2 =>
+                 cts.prod
+                   cts.box
+                   cts.star
+                   cts.star
+                   cts.I
+                   (cts.prod
+                      cts.box
+                      cts.box
+                      cts.box
+                      cts.I
+                      x
+                      (x3 => cts.univ cts.star cts.box cts.I))
+                   (x3 => cts.prod cts.star cts.star cts.star cts.I (x3 x0) (x4 => x3 x1))))))).
+
