@@ -1,0 +1,4 @@
+(executable
+ (name main)
+ (public_name main)
+ (libraries dedukti.kernel dedukti.api dedukti.parsers str))
