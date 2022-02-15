@@ -2,7 +2,7 @@ open Api
 open Parsers
 module T = Kernel.Term
 module B = Kernel.Basic
-module Typer = Typerr.Default
+module Typer = Typer.Default
 
 let curmid = ref (B.mk_mident "")
 
